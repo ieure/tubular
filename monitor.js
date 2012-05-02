@@ -18,11 +18,11 @@ function makeRow(tube) {
     var modelCell = document.createElement("td");
     modelCell.appendChild(document.createTextNode(tube[0]));
     var heaterCell = document.createElement("td");
-    heaterCell.appendChild(document.createTextNode(tube[1]));
+    heaterCell.appendChild(document.createTextNode(tube[1] + "v"));
     var crcaCell = document.createElement("td");
-    crcaCell.appendChild(document.createTextNode(tube[2]));
+    crcaCell.appendChild(document.createTextNode("CR-" + tube[2]));
     var typeCell = document.createElement("td");
-    if (tube[3] == "c") {
+    if (tube[3] == 1) {
         var typeLabel = "color";
     } else {
         var typeLabel = "mono";

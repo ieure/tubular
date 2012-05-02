@@ -16,10 +16,10 @@
     <table>
         <thead>
             <tr>
-                <th>Type</th>
+                <th>Tube</th>
                 <th>Heater</th>
-                <th>CR/CA</th>
                 <th>Type</th>
+                <th>Neck</th>
             </tr>
         </thead>
         <tbody id="tbody"/>
