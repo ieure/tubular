@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title></title>
+        <title>Monitor Helper</title>
         <style type="text/css">
             include(reset.css)
         </style>
