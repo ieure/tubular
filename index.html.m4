@@ -18,8 +18,8 @@
             <tr>
                 <th>Tube</th>
                 <th>Heater</th>
-                <th>Type</th>
                 <th>Neck</th>
+                <th>Type</th>
             </tr>
         </thead>
         <tbody id="tbody"/>
