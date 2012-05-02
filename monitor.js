@@ -1,11 +1,34 @@
 var tube = document.getElementById("tube");
 var t;
-tube.onkeyup = function () {
+tube.onkeyup = function(event) {
     if (t) {
         window.clearTimeout(t);
     }
-    t = setTimeout(search, 200);
+    t = setTimeout(searchEvent, 200);
 };
+
+var form = document.getElementsByTagName("form")[0];
+form.onsubmit = searchEvent;
+
+window.onpopstate = function(event) {
+    if (event.state && event.state.tube) {
+        setState(event.state.tube);
+    }
+};
+
+window.onload = function() {
+    var state = window.location.hash.substring(1);
+    if (state) {
+        setState(state);
+    } else {
+        tube.focus();
+    }
+};
+
+function setState(state) {
+    tube.value = state;
+    searchFor(state);
+}
 
 function makeRow(tube) {
     var row = document.createElement("tr");
@@ -42,12 +65,24 @@ function flush(node) {
     }
 };
 
-function search() {
-    var tube = document.getElementById("tube");
-    var exp = new RegExp(tube.value, "i");
+function searchEvent(event) {
+    if (event) {
+        event.stopPropagation();
+    }
+    var text = document.getElementById("tube").value
+    if (event && event.type == "submit" || text.length > 1) {
+        searchFor(text);
+        history.pushState(
+            {"tube": text}, "Monitor Helper: " + text, "#" + text);
+    }
+    return false;
+}
+
+function searchFor(tube) {
+    var exp = new RegExp(tube, "i");
     var tbody = document.getElementById("tbody");
     flush(tbody);
-    if (! tube.value) {
+    if (! tube) {
         return;
     }
     for (i in tubes) {
@@ -55,5 +90,4 @@ function search() {
             tbody.appendChild(makeRow(tubes[i]));
         }
     }
-    return false;
 };
