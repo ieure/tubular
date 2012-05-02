@@ -1,8 +1,31 @@
-html, body { width: 100%; font-family: Helvetica, sans-serif;
-text-align: center; }
-html, input { font-size: 36pt; }
-label { margin-right: 1em; }
-table { width: 80%; margin: auto; }
-th { font-weight: bold; }
-th, td { text-align: left; }
-input { width: 80%; }
+
+html, body {
+    width: 100%;
+    font-family: Helvetica, sans-serif;
+    text-align: center;
+}
+html,
+input {
+    font-size: 36pt;
+}
+
+label {
+    margin-right: 1em;
+}
+
+table {
+    width: 80%;
+    margin: auto;
+}
+
+th {
+    font-weight: bold;
+}
+
+th, td {
+    text-align: left;
+}
+
+input {
+    width: 80%;
+}
