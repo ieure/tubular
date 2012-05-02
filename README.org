@@ -1,0 +1,18 @@
+* Monitors
+  This is a simple searchable database of CRT information. It’s useful
+  if you’re [[http://www.junknet.net/donor-tvs][looking for a donor tube to swap into an arcade monitor.]]
+
+* Features
+  - Includes tube model, heater voltage, neck socket type, color/mono.
+  - Data on nearly 9,000 tubes.
+  - One HTML page with no external dependencies — ues it even if
+    you’re offline.
+  - Well-behaved, sets browser history as you’d expect.
+  - Mobile optimized.
+
+
+* Using it
+  [[http://ieure.github.com/monitors/][It’s online right here]]! Just enter the tube model you’re looking for.
+
+* Thanks
+  KLOVers modessitt (for the idea) and channelmanic (for the data).
