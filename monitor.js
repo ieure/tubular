@@ -28,6 +28,11 @@ window.onload = function() {
 function setState(state) {
     tube.value = state;
     searchFor(state);
+    setTitle(state);
+}
+
+function setTitle(title) {
+    document.title = "Monitor Helper - " + title;
 }
 
 function makeRow(tube) {
@@ -73,12 +78,13 @@ function searchEvent(event) {
     if (event && event.type == "submit" || text.length > 1) {
         searchFor(text);
         history.pushState(
-            {"tube": text}, "Monitor Helper: " + text, "#" + text);
+            {"tube": text}, document.title, "#" + text);
     }
     return false;
 }
 
 function searchFor(tube) {
+    setTitle("Searching: "+ tube);
     var exp = new RegExp(tube, "i");
     var tbody = document.getElementById("tbody");
     flush(tbody);
