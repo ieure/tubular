@@ -9143,6 +9143,7 @@ function initialize() {
     var reference = document.getElementById("clearReference");
     reference.onclick = function(event) {
         clearReferenced();
+        searchEvent(event);
     };
 
     var search = document.getElementById("searchBody")
