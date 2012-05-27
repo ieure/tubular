@@ -1,5 +1,6 @@
 <html>
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <title>Monitor Helper</title>
         <style type="text/css">
             include(reset.css)
@@ -13,7 +14,8 @@
     </head>
 <body>
     <form><label for="tube">Tube</label><input type="text" name="tube" id="tube"></form>
-    <table>
+    <div id="reference"><label for="compat">Compatible with <span id="compat"></span></label><span id="compat"></span><div id="clearReference">×</div></div>
+    <table id="search">
         <thead>
             <tr>
                 <th>Tube</th>
@@ -22,7 +24,7 @@
                 <th>Type</th>
             </tr>
         </thead>
-        <tbody id="tbody"/>
+        <tbody id="searchBody"/>
     </table>
 
     <script type="text/javascript">

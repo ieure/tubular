@@ -16,6 +16,7 @@ label {
 table {
     width: 80%;
     margin: auto;
+    display: none;
 }
 
 th {
@@ -26,6 +27,39 @@ th, td {
     text-align: left;
 }
 
+tbody tr:nth-child(odd) {
+    background-color: #eef7ee;
+}
+
 input {
     width: 80%;
+}
+
+#compat {
+    color: #aaa;
+}
+
+#reference {
+    display: none;
+}
+
+#clearReference {
+    width: 1em;
+    height: 1em;
+    padding: .1em;
+    display: inline-block;
+    color: white;
+    background: red;
+    border: .10em solid black;
+    border-radius: 1em;
+    line-height: .75em;
+    vertical-align: top;
+    font-size: 24pt;
+//    background-image: radial-gradient(left top, circle farthest-corner, #FFFFFF -50%, #FF0000 50%);
+background-image: -webkit-radial-gradient(left top, circle farthest-corner, #FFFFFF -50%, #FF0000 50%);
+}
+
+#clearReference:hover {
+    color: black;
+    border-color: #aaa;
 }
