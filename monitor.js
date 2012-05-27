@@ -28,7 +28,7 @@ function initialize() {
             return;
         }
         setReferenceTube(node.tube);
-        searchEvent(event);
+        clearSearch();
     };
 
     window.onpopstate = function(event) {
@@ -116,6 +116,11 @@ function parseState(state) {
     return stateObj;
 };
 
+function updateState() {
+    history.pushState(
+        getState(), document.title, "#" + getStateHash());
+};
+
 
 function buildTitle(state)
 {
@@ -147,8 +152,10 @@ function setReferenceTube(tube) {
 };
 
 function clearReferenced() {
-    document.getElementById("reference").style.display = "none";;
+    document.getElementById("reference").style.display = "none";
     referenceTube = undefined;
+    updateState();
+    tube.focus();
 };
 
 function isCompatible(tubeA, tubeB) {
@@ -223,8 +230,7 @@ function searchEvent(event) {
         (state.search && state.search.length > 1)) {
         setTitle(state);
         searchFor(state.search);
-        history.pushState(
-            state, document.title, "#" + getStateHash());
+        updateState();
     }
     return false;
 };
@@ -237,7 +243,7 @@ function searchFor(tube) {
     var tbody = document.getElementById("searchBody");
     flush(tbody);
     if (! tube) {
-        document.getElementById("search").style.display = "none";
+        clearSearch();
         return;
     }
     document.getElementById("search").style.display = "table";
@@ -251,6 +257,14 @@ function searchFor(tube) {
             x++;
         }
     }
+};
+
+function clearSearch() {
+    tube.value = "";
+    flush(document.getElementById("searchBody"));
+    document.getElementById("search").style.display = "none";
+    updateState();
+    tube.focus();
 };
 
 initialize();
