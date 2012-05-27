@@ -1,7 +1,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <meta name="version" content="1.3.1">
+        <meta name="version" content="1.3.2">
         <title>Monitor Helper</title>
         <style type="text/css">
             include(reset.css)
