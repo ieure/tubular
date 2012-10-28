@@ -5,7 +5,7 @@
 * Features
   - Includes tube model, heater voltage, neck socket type, color/mono.
   - Data on nearly 9,000 tubes.
-  - One HTML page with no external dependencies — ues it even if
+  - One HTML page with no external dependencies — use it even if
     you’re offline.
   - Well-behaved, sets browser history as you’d expect.
   - Mobile optimized.
