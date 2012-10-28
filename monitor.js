@@ -180,7 +180,7 @@ function sizeInMm(tube) {
 
 function makeRow(tube) {
     var row = document.createElement("tr");
-    if (tube[3] == "c") {
+    if (tube[3] == 1) {
         var typeLabel = "color";
     } else {
         var typeLabel = "mono";
@@ -193,11 +193,6 @@ function makeRow(tube) {
     var crcaCell = document.createElement("td");
     crcaCell.appendChild(document.createTextNode("CR-" + tube[2]));
     var typeCell = document.createElement("td");
-    if (tube[3] == 1) {
-        var typeLabel = "color";
-    } else {
-        var typeLabel = "mono";
-    }
     typeCell.appendChild(document.createTextNode(typeLabel));
     var g1Cell = document.createElement("td");
     g1Cell.appendChild(document.createTextNode(tube[4] + "v"));
