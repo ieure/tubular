@@ -199,9 +199,12 @@ function makeRow(tube) {
         var typeLabel = "mono";
     }
     typeCell.appendChild(document.createTextNode(typeLabel));
+    var g1Cell = document.createElement("td");
+    g1Cell.appendChild(document.createTextNode(tube[4] + "v"));
 
     row.appendChild(modelCell);
     row.appendChild(heaterCell);
+    row.appendChild(g1Cell);
     row.appendChild(crcaCell);
     row.appendChild(typeCell);
     row.tube = tube;
