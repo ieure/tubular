@@ -160,9 +160,10 @@ function clearReferenced() {
 };
 
 function isCompatible(tubeA, tubeB) {
-    return tubeA[1] == tubeB[1] &&
-        tubeA[2] == tubeB[2] &&
-        tubeA[3] == tubeB[3];
+    return tubeA[1] == tubeB[1] &&  // Heater voltage
+           tubeA[2] == tubeB[2] &&  // Socket
+           tubeA[3] == tubeB[3] &&  // Color / mono
+           tubeA[4] == tubeB[4]     // G1 voltage
 };
 
 function inchesToMm(inches) {
@@ -180,10 +181,16 @@ function sizeInMm(tube) {
 
 function makeRow(tube) {
     var row = document.createElement("tr");
+    var classes = ["type"];
     if (tube[3] == 1) {
-        var typeLabel = "color";
+        classes.push("color");
+        if (redGreenSwap.indexOf(tube[0]) != -1) {
+            classes.push("grb");
+        } else if (redBlueSwap.indexOf(tube[0]) != -1) {
+            classes.push("bgr");
+        }
     } else {
-        var typeLabel = "mono";
+        classes.push("mono")
     }
 
     var modelCell = document.createElement("td");
@@ -193,15 +200,16 @@ function makeRow(tube) {
     var crcaCell = document.createElement("td");
     crcaCell.appendChild(document.createTextNode("CR-" + tube[2]));
     var typeCell = document.createElement("td");
-    typeCell.appendChild(document.createTextNode(typeLabel));
+    typeCell.appendChild(document.createElement("span"));
+    typeCell.setAttribute("class", classes.join(" "));
     var g1Cell = document.createElement("td");
     g1Cell.appendChild(document.createTextNode(tube[4] + "v"));
 
+    row.appendChild(typeCell);
     row.appendChild(modelCell);
     row.appendChild(heaterCell);
     row.appendChild(g1Cell);
     row.appendChild(crcaCell);
-    row.appendChild(typeCell);
     row.tube = tube;
     return row;
 };

@@ -19,11 +19,11 @@
     <table id="search">
         <thead>
             <tr>
+                <th></th>
                 <th>Tube</th>
                 <th>Heater</th>
                 <th>G1</th>
                 <th>Neck</th>
-                <th>Type</th>
             </tr>
         </thead>
         <tbody id="searchBody"/>

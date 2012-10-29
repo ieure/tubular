@@ -19,6 +19,60 @@ table {
     display: none;
 }
 
+td.type {
+    vertical-align: middle;
+    text-align: center;
+}
+
+td {
+    vertical-align: middle;
+}
+
+td.type > span {
+    display: block;
+    color: white;
+    -webkit-border-radius: 20;
+    -moz-border-radius: 20%;
+    border-radius: 20%;
+    margin: .2em;
+    height: 1em;
+    width: 1em;
+    content: " ";
+    padding: 0;
+}
+
+td.type.bgr > span:before,
+td.type.grb > span:before {
+    content: "↹";
+    color: #fafafa;
+    position: relative;
+    left: -.2em;
+    top: -.05em;
+}
+
+td.type.color > span {
+    border-left: solid #ef4444 .33em;
+    background: #44ef44;
+    border-right: solid #4444ef .33em;
+    width: .33em;
+}
+
+td.type.color.grb > span {
+    border-left-color: #44ef44;
+    background-color: #ef4444;
+}
+
+td.type.color.bgr > span {
+    border-left-color: #4444ef;
+    border-right-color: #ef4444;
+}
+
+td.type.mono > span {
+    border-left: solid #000000 .5em;
+    background: #dfdfdf;
+    width: .5em;
+}
+
 th {
     font-weight: bold;
 }

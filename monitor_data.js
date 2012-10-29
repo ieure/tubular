@@ -8984,3 +8984,24 @@ var tubes = [
     ["T47-11", "4.2", 6, 0, 70],
     ["T47-16", "4.2", 6, 0, 70]
 ];
+
+var redGreenSwap = [
+    "19VKYP22",
+    "SD-37"];
+
+var redBlueSwap = [
+    "10VABP22",
+    "10VADP22",
+    "16VEMP22",
+    "180TB22",
+    "SD102-B",
+    "SD102-G",
+    "SD102-R",
+    "SD116-B",
+    "SD116-G",
+    "SD116-R",
+    "E8404",
+    "M48JKE8WW",
+    "M48JKE9WW",
+    "M48JLM9WB"
+]
