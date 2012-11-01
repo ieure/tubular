@@ -184,13 +184,13 @@ function makeRow(tube) {
     var classes = ["type"];
     if (tube[3] == 1) {
         classes.push("color");
-        if (redGreenSwap.indexOf(tube[0]) != -1) {
-            classes.push("grb");
-        } else if (redBlueSwap.indexOf(tube[0]) != -1) {
-            classes.push("bgr");
-        }
     } else {
         classes.push("mono")
+    }
+    if (redGreenSwap.indexOf(tube[0]) != -1) {
+        classes.push("grb");
+    } else if (redBlueSwap.indexOf(tube[0]) != -1) {
+        classes.push("bgr");
     }
 
     var modelCell = document.createElement("td");
