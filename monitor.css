@@ -19,58 +19,67 @@ table {
     display: none;
 }
 
-td.type {
-    vertical-align: middle;
-    text-align: center;
-}
-
 td {
     vertical-align: middle;
+}
+
+td.type {
+    text-align: center;
+    padding: .2em 0;
+    width: 1.75em;
 }
 
 td.type > span {
     display: block;
     color: white;
-    -webkit-border-radius: 20;
-    -moz-border-radius: 20%;
-    border-radius: 20%;
-    margin: .2em;
+    border-radius: 25%;
+    border: 2px solid #7f7f7f;
     height: 1em;
-    width: 1em;
-    content: " ";
+    width: 1.33em;
+    content: "";
     padding: 0;
 }
 
-td.type.bgr > span:before,
-td.type.grb > span:before {
-    content: "↹";
-    color: #fafafa;
-    position: relative;
-    left: -.2em;
-    top: -.05em;
-}
-
-td.type.color > span {
-    border-left: solid #ef4444 .33em;
-    background: #44ef44;
-    border-right: solid #4444ef .33em;
-    width: .33em;
-}
-
-td.type.color.grb > span {
-    border-left-color: #44ef44;
-    background-color: #ef4444;
-}
-
-td.type.color.bgr > span {
-    border-left-color: #4444ef;
-    border-right-color: #ef4444;
+td.type > span:before {
+    content: "";
+    height: 1em;
+    display: block;
+    background: -webkit-gradient(linear, left top, right bottom, from(rgba(255, 255, 255, 0.5)), to(rgba(255, 255, 255, 0.0)));
+    border-radius: 25%;
 }
 
 td.type.mono > span {
-    border-left: solid #000000 .5em;
-    background: #dfdfdf;
-    width: .5em;
+    background: -webkit-linear-gradient(left, #e9826e 0%,#e9826e 50%,#fff0f0 50%,#ffdfdf 100%);
+}
+
+td.type.mono.bgr > span {
+    background: -webkit-linear-gradient(left, #57b3ea 0%,#57b3ea 50%,#f0f0ff 50%,#dfdfff 100%);
+}
+
+td.type.mono.grb > span {
+    background: -webkit-linear-gradient(left, #b3f64a 0%,#b3f64a 50%,#f0fff0 50%,#dfffdf 100%);
+}
+
+td.type.color > span {
+    background: -webkit-linear-gradient(left, #e9826e 0%,#e9826e 33.3%,#b3f64a 33.3%,#b3f64a 66.6%,#57b3ea 66.6%, #57b3ea 100%);
+}
+
+td.type.color.bgr > span {
+    background: -webkit-linear-gradient(left, #57b3ea 0%,#57b3ea 33.3%,#b3f64a 33.3%,#b3f64a 66.6%,#e9826e 66.6%, #e9826e 100%);
+}
+
+td.type.color.grb > span {
+    background: -webkit-linear-gradient(left, #b3f64a 0%,#b3f64a 33.3%,#e9826e 33.3%,#e9826e 66.6%,#57b3ea 66.6%, #57b3ea 100%);
+}
+
+td.color.grb > span:before,
+td.color.bgr > span:before,
+td.mono.grb > span:before,
+td.mono.bgr > span:before {
+    content: "↔";
+    color: #fafafa;
+    text-shadow: .05em .05em .1em #454545;
+    line-height: .85em;
 }
 
 th {
