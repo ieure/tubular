@@ -23,6 +23,18 @@ td {
     vertical-align: middle;
 }
 
+tr:hover > td {
+    background: -webkit-gradient(linear, left top, left bottom, from(#b6cde3), to(#79b4e8));
+    color: #454545;
+}
+
+tr:hover > td:first-child {
+    border-radius: .25em 0 0 .25em;
+}
+tr:hover > td:last-child {
+    border-radius: 0 .25em .25em 0;
+}
+
 td.type {
     text-align: center;
     padding: .2em 0;
