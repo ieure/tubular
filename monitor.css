@@ -38,7 +38,7 @@ tr:hover > td:last-child {
 td.type {
     text-align: center;
     padding: .2em 0;
-    width: 1.75em;
+    width: 2em;
 }
 
 td.type > span {
@@ -48,6 +48,7 @@ td.type > span {
     border: 2px solid #7f7f7f;
     height: 1em;
     width: 1.33em;
+    margin: auto;
     content: "";
     padding: 0;
 }
@@ -121,20 +122,22 @@ input {
 #clearReference {
     width: 1em;
     height: 1em;
-    padding: .1em;
+    padding: .15em .15em .1em .15em;
     display: inline-block;
+    text-shadow: .05em .05em .1em #454545;
     color: white;
-    background: red;
-    border: .10em solid black;
+    background: #e9826e;
+    background: -webkit-gradient(linear, left top, right bottom, from(#f3bbb0), to(#e9826e));
+    border: 2px solid #7f7f7f;
     border-radius: 1em;
     line-height: .75em;
     vertical-align: top;
     font-size: 24pt;
-//    background-image: radial-gradient(left top, circle farthest-corner, #FFFFFF -50%, #FF0000 50%);
-background-image: -webkit-radial-gradient(left top, circle farthest-corner, #FFFFFF -50%, #FF0000 50%);
 }
 
 #clearReference:hover {
-    color: black;
-    border-color: #aaa;
+    color: #545454;
+    border-color: #7f7f7f;
+    text-shadow: none;
+    background: -webkit-gradient(linear, left top, right bottom, from(#e9826e), to(#f3bbb0));
 }
