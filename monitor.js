@@ -243,7 +243,7 @@ function showLabel() {
 }
 
 function hideLabel() {
-        document.getElementsByTagName("label")[0].style.display = "none";
+    document.getElementsByTagName("label")[0].style.display = "none";
 }
 
 function searchEvent(event) {
