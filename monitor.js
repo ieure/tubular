@@ -224,6 +224,13 @@ function makeRow(tube) {
     return row;
 };
 
+function rowFor(tube) {
+    if (!tube.row) {
+        tube.row = makeRow(tube);
+    }
+    return tube.row;
+};
+
 function getTube(tube) {
     for (i in tubes) {
         if (tubes[i][0] == tube) {
@@ -278,7 +285,7 @@ function searchFor(tube) {
             continue;
         }
         if (predicate(tubes[i])) {
-            tbody.appendChild(makeRow(tubes[i]));
+            tbody.appendChild(rowFor(tubes[i]));
             x++;
         }
     }
