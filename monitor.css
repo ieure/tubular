@@ -13,9 +13,13 @@ label {
     margin-right: 1em;
 }
 
-table {
+table,
+form {
     width: 90%;
     margin: auto;
+}
+
+table {
     display: none;
 }
 
@@ -108,7 +112,21 @@ tbody tr:nth-child(odd) {
 }
 
 input {
-    width: 80%;
+    width: 90%;
+    line-height: 1em;
+}
+
+form {
+    position: relative;
+    padding: 0;
+}
+
+form > label {
+    position: absolute;
+    color: #aaa;
+    vertical-align: bottom;
+    top: .25em;
+    left: 1.25em;
 }
 
 #compat {

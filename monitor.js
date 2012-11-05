@@ -3,7 +3,17 @@ var referenceTube;
 var t;
 
 function initialize() {
+    tube.onkeydown = function(event) {
+        var state = getState();
+        hideLabel();
+    }
+
     tube.onkeyup = function(event) {
+        var state = getState();
+        if (!state.search) {
+            showLabel();
+        }
+
         if (t) {
             window.clearTimeout(t);
         }
@@ -75,7 +85,7 @@ function restoreState(state) {
 function getState() {
     var stateObj = new Object;
     if (tube.value) {
-        stateObj.search = tube.value;
+        stateObj.search = tube.value.trim();
     }
     if (referenceTube) {
         stateObj.compat = referenceTube[0];
@@ -228,6 +238,14 @@ function flush(node) {
     }
 };
 
+function showLabel() {
+    document.getElementsByTagName("label")[0].style.display = "block";
+}
+
+function hideLabel() {
+        document.getElementsByTagName("label")[0].style.display = "none";
+}
+
 function searchEvent(event) {
     if (event) {
         event.stopPropagation();
@@ -270,6 +288,7 @@ function clearSearch() {
     tube.value = "";
     flush(document.getElementById("searchBody"));
     document.getElementById("search").style.display = "none";
+    showLabel();
     updateState();
     tube.focus();
 };
