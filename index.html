@@ -69,9 +69,13 @@ label {
     margin-right: 1em;
 }
 
-table {
+table,
+form {
     width: 90%;
     margin: auto;
+}
+
+table {
     display: none;
 }
 
@@ -79,7 +83,7 @@ td {
     vertical-align: middle;
 }
 
-tr:hover > td {
+#compatRes tr:hover > td {
     background: -webkit-gradient(linear, left top, left bottom, from(#b6cde3), to(#79b4e8));
     color: #454545;
 }
@@ -163,8 +167,26 @@ tbody tr:nth-child(odd) {
     background-color: #eef7ee;
 }
 
+#incompatRes {
+    opacity: .2;
+}
+
 input {
-    width: 80%;
+    width: 90%;
+    line-height: 1em;
+}
+
+form {
+    position: relative;
+    padding: 0;
+}
+
+form > label {
+    position: absolute;
+    color: #aaa;
+    vertical-align: bottom;
+    top: .25em;
+    left: 1.25em;
 }
 
 #compat {
@@ -9221,7 +9243,8 @@ var redBlueSwap = [
                 <th>Neck</th>
             </tr>
         </thead>
-        <tbody id="searchBody"/>
+        <tbody id="compatRes">
+        <tbody id="incompatRes">
     </table>
 
     <script type="text/javascript">
@@ -9230,7 +9253,17 @@ var referenceTube;
 var t;
 
 function initialize() {
+    tube.onkeydown = function(event) {
+        var state = getState();
+        hideLabel();
+    }
+
     tube.onkeyup = function(event) {
+        var state = getState();
+        if (!state.search) {
+            showLabel();
+        }
+
         if (t) {
             window.clearTimeout(t);
         }
@@ -9246,8 +9279,8 @@ function initialize() {
         searchEvent(event);
     };
 
-    var search = document.getElementById("searchBody")
-    search.onclick = function(event) {
+    var searchRes = document.getElementById("compatRes")
+    searchRes.onclick = function(event) {
         var node = event.target;
         while (node.tube == undefined | node.tagName == "body") {
             node = node.parentNode;
@@ -9259,14 +9292,13 @@ function initialize() {
         clearSearch();
     };
 
-    window.onpopstate = function(event) {
-        restoreState(event.state);
-    };
-
     var readyStateCheckInterval = setInterval(function() {
         if (document.readyState === "complete") {
             initializeState();
             clearInterval(readyStateCheckInterval);
+            window.onpopstate = function(event) {
+                restoreState(event.state);
+            };
         }
     }, 10);
 };
@@ -9288,6 +9320,7 @@ function restoreState(state) {
     var state = parseState(state);
     if (state.search) {
         tube.value = state.search;
+        hideLabel();
     }
     if (state.compat) {
         setReferenceTube(getTube(state.compat));
@@ -9302,7 +9335,7 @@ function restoreState(state) {
 function getState() {
     var stateObj = new Object;
     if (tube.value) {
-        stateObj.search = tube.value;
+        stateObj.search = tube.value.trim();
     }
     if (referenceTube) {
         stateObj.compat = referenceTube[0];
@@ -9441,6 +9474,13 @@ function makeRow(tube) {
     return row;
 };
 
+function rowFor(tube) {
+    if (!tube.row) {
+        tube.row = makeRow(tube);
+    }
+    return tube.row;
+};
+
 function getTube(tube) {
     for (i in tubes) {
         if (tubes[i][0] == tube) {
@@ -9454,6 +9494,14 @@ function flush(node) {
         node.removeChild(node.firstChild);
     }
 };
+
+function showLabel() {
+    document.getElementsByTagName("label")[0].style.display = "block";
+}
+
+function hideLabel() {
+    document.getElementsByTagName("label")[0].style.display = "none";
+}
 
 function searchEvent(event) {
     if (event) {
@@ -9469,12 +9517,17 @@ function searchEvent(event) {
     return false;
 };
 
-function searchFor(tube) {
-    var exp = new RegExp(tube, "i");
-    var predicate = function(mTube) {
+function regexPredicate(search) {
+    var exp = new RegExp(search, "i");
+    return function(mTube) {
         return mTube[0].search(exp) !== -1;
     };
-    var tbody = document.getElementById("searchBody");
+}
+
+function searchFor(tube) {
+    var predicate = regexPredicate(tube)
+    var tbody = document.getElementById("compatRes");
+    var incompatBody = document.getElementById("incompatRes");
     flush(tbody);
     if (! tube) {
         clearSearch();
@@ -9483,20 +9536,28 @@ function searchFor(tube) {
     document.getElementById("search").style.display = "table";
     var x = 0;
     for (i in tubes) {
-        if (referenceTube && !isCompatible(referenceTube, tubes[i])) {
+        if (!predicate(tubes[i])) {
             continue;
         }
-        if (predicate(tubes[i])) {
-            tbody.appendChild(makeRow(tubes[i]));
-            x++;
+        var row = rowFor(tubes[i])
+        var body = undefined;
+        if (!referenceTube ||
+            (referenceTube && isCompatible(referenceTube, tubes[i]))) {
+            body = tbody
+        } else {
+            body = incompatBody;
         }
+        body.appendChild(row);
+        x++;
     }
 };
 
 function clearSearch() {
     tube.value = "";
-    flush(document.getElementById("searchBody"));
+    flush(document.getElementById("compatRes"));
+    flush(document.getElementById("incompatRes"));
     document.getElementById("search").style.display = "none";
+    showLabel();
     updateState();
     tube.focus();
 };
