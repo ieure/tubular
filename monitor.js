@@ -29,8 +29,8 @@ function initialize() {
         searchEvent(event);
     };
 
-    var search = document.getElementById("searchBody")
-    search.onclick = function(event) {
+    var searchRes = document.getElementById("compatRes")
+    searchRes.onclick = function(event) {
         var node = event.target;
         while (node.tube == undefined | node.tagName == "body") {
             node = node.parentNode;
@@ -276,7 +276,8 @@ function regexPredicate(search) {
 
 function searchFor(tube) {
     var predicate = regexPredicate(tube)
-    var tbody = document.getElementById("searchBody");
+    var tbody = document.getElementById("compatRes");
+    var incompatBody = document.getElementById("incompatRes");
     flush(tbody);
     if (! tube) {
         clearSearch();
@@ -285,19 +286,26 @@ function searchFor(tube) {
     document.getElementById("search").style.display = "table";
     var x = 0;
     for (i in tubes) {
-        if (referenceTube && !isCompatible(referenceTube, tubes[i])) {
+        if (!predicate(tubes[i])) {
             continue;
         }
-        if (predicate(tubes[i])) {
-            tbody.appendChild(rowFor(tubes[i]));
-            x++;
+        var row = rowFor(tubes[i])
+        var body = undefined;
+        if (!referenceTube ||
+            (referenceTube && isCompatible(referenceTube, tubes[i]))) {
+            body = tbody
+        } else {
+            body = incompatBody;
         }
+        body.appendChild(row);
+        x++;
     }
 };
 
 function clearSearch() {
     tube.value = "";
-    flush(document.getElementById("searchBody"));
+    flush(document.getElementById("compatRes"));
+    flush(document.getElementById("incompatRes"));
     document.getElementById("search").style.display = "none";
     showLabel();
     updateState();

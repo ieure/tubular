@@ -27,7 +27,7 @@ td {
     vertical-align: middle;
 }
 
-tr:hover > td {
+#compatRes tr:hover > td {
     background: -webkit-gradient(linear, left top, left bottom, from(#b6cde3), to(#79b4e8));
     color: #454545;
 }
@@ -109,6 +109,10 @@ th, td {
 
 tbody tr:nth-child(odd) {
     background-color: #eef7ee;
+}
+
+#incompatRes {
+    opacity: .2;
 }
 
 input {

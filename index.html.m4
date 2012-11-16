@@ -26,7 +26,8 @@
                 <th>Neck</th>
             </tr>
         </thead>
-        <tbody id="searchBody"/>
+        <tbody id="compatRes">
+        <tbody id="incompatRes">
     </table>
 
     <script type="text/javascript">
