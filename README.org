@@ -29,15 +29,5 @@
      results, while matching but incompatble tubes will appear grayed
      out at the bottom of the results list.
 
-* Legend
-
-  | Symbol            | Meaning                               |
-  | [[file:doc/rgb.png]]  | RGB color tube                        |
-  | [[file:doc/bgr.png]]  | RGB tube, red/blue guns swapped       |
-  | [[file:doc/grb.png]]  | RGB tube, green/red guns swapped      |
-  | [[file:doc/bw-r.png]] | Standard mono tube, test with red gun |
-  | [[file:doc/bw-g.png]] | Mono tube, test with green gun        |
-  | [[file:doc/bw-b.png]] | Mono tube, test with blue gun         |
-
 * Thanks
   KLOVers modessitt (for the idea) and channelmanic (for the data).
