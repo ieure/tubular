@@ -42,14 +42,13 @@ function initialize() {
         clearSearch();
     };
 
-    window.onpopstate = function(event) {
-        restoreState(event.state);
-    };
-
     var readyStateCheckInterval = setInterval(function() {
         if (document.readyState === "complete") {
             initializeState();
             clearInterval(readyStateCheckInterval);
+            window.onpopstate = function(event) {
+                restoreState(event.state);
+            };
         }
     }, 10);
 };
@@ -71,6 +70,7 @@ function restoreState(state) {
     var state = parseState(state);
     if (state.search) {
         tube.value = state.search;
+        hideLabel();
     }
     if (state.compat) {
         setReferenceTube(getTube(state.compat));
