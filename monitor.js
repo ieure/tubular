@@ -267,11 +267,15 @@ function searchEvent(event) {
     return false;
 };
 
-function searchFor(tube) {
-    var exp = new RegExp(tube, "i");
-    var predicate = function(mTube) {
+function regexPredicate(search) {
+    var exp = new RegExp(search, "i");
+    return function(mTube) {
         return mTube[0].search(exp) !== -1;
     };
+}
+
+function searchFor(tube) {
+    var predicate = regexPredicate(tube)
     var tbody = document.getElementById("searchBody");
     flush(tbody);
     if (! tube) {
