@@ -10,7 +10,7 @@
             include(monitor.css)
         </style>
         <script type="text/javascript">
-            include(monitor_data.js)
+            include(monitor_data.js.o)
         </script>
     </head>
 <body>
@@ -31,7 +31,7 @@
     </table>
 
     <script type="text/javascript">
-        include(monitor.js)
+        include(monitor.js.o)
     </script>
 </body>
 </html>
