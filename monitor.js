@@ -42,6 +42,19 @@ function initialize() {
         clearSearch();
     };
 
+    // Help
+    var showHelp = document.getElementById("showhelp");
+    var help = document.getElementById("help");
+
+    showHelp.onclick = function(event) {
+        help.style.display = "block";
+    }
+
+    help.onclick = function(event) {
+        help.style.display = "none";
+        history.popState();
+    }
+
     var readyStateCheckInterval = setInterval(function() {
         if (document.readyState === "complete") {
             initializeState();

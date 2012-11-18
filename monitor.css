@@ -163,3 +163,68 @@ form > label {
     text-shadow: none;
     background: -webkit-gradient(linear, left top, right bottom, from(#e9826e), to(#f3bbb0));
 }
+
+#help {
+    width: 80%;
+    font-size: .8em;
+    font-weight: lighter;
+    border: 2px solid #aaa;
+    border-radius: .75em;
+    background: #fafafa;
+    position: absolute;
+    padding: 2%;
+    top: 1em;
+    left: 8%;
+    display: none;
+}
+
+#help p,
+#help ol {
+    text-align: left;
+    width: 90%;
+    margin: auto;
+    margin-bottom: 1em;
+    font-size: 85%;
+}
+
+#help ol {
+    margin: 1em 10%;
+}
+
+#help h1 {
+    weight: normal;
+    text-align: left;
+}
+
+#help emph {
+    font-style: italic;
+}
+
+#help ol li {
+    list-style: decimal outside;
+}
+
+#help #dismiss {
+    margin-top: 1em;
+    text-align: right;
+}
+
+#help #legend {
+    display: table;
+}
+
+#showhelp {
+    position: absolute;
+    top: .15em;
+    right: 0;
+    border: 2px solid #aaa;
+    border-radius: 15%;
+    display: block;
+    width: 1em;
+    height: 1em;
+    line-height: 1em;
+    background: -webkit-gradient(linear, left top, right bottom, from(#fffcd2), to(#fffa6c));
+    color: #af651c;
+    cursor: hand;
+    user-select: none;
+}
