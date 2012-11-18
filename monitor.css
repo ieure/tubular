@@ -17,10 +17,12 @@ table,
 form {
     width: 90%;
     margin: auto;
+    display: relative;
 }
 
 table {
     display: none;
+    font-weight: lighter;
 }
 
 td {
@@ -100,7 +102,7 @@ td.mono.bgr > span:before {
 }
 
 th {
-    font-weight: bold;
+    font-weight: normal;
 }
 
 th, td {
