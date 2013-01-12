@@ -1,3 +1,4 @@
+var mode = 'bk';
 var tubes = [
     // Tube model, heater voltage, socket type, 1=color;0=mono, G1 voltage
     ["6ABP1", 6.3, 29, 1, 50],
@@ -9002,5 +9003,4 @@ var redBlueSwap = [
     "E8404",
     "M48JKE8WW",
     "M48JKE9WW",
-    "M48JLM9WB"
-]
+    "M48JLM9WB"];
