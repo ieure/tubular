@@ -31,7 +31,19 @@
     </table>
 
     <div id="help">
-        <h1>Finding your tube</h1>
+        <h1>Monitor Helper</h1>
+        <p>This is a tool to assist CRT repair and swapping. With it, you can find the adapter and settings for rejuvenating a tube, as well as determine if tubes are compatible with each other, and thus may be substituted.</p>
+
+        <h1>Tube model numbers</h1>
+        <p>The model number is usually located on a sticker on the back side of the tube. It is almost never located on the metal frame or circuit boards (chassis). Tube models come in a number of forms, but these are the most common:</p>
+        <ul>
+            <li><strong>19</strong>VLUP22 — <strong>19”</strong> tube</li>
+            <li><strong>15</strong>ST4730R — <strong>15”</strong> tube</li>
+            <li>A<strong>48</strong>LRH93X — <strong>48 cm</strong> (19”) tube</li>
+            <li>A<strong>63</strong>ADT10X05 — <strong>63 cm</strong> (25”) tube</li>
+        </ul>
+
+        <h1>Searching for your tube</h1>
         <p>Type the tube model into the <emph>Tube</emph> field. The search results will update automatically as you type.</p>
 
         <h1>Finding a compatible tube</h1>
@@ -40,6 +52,8 @@
             <li>Search for your source tube, and click or tap it in the results list. Results & <emph>Tube</emph> input will clear.</li>
             <li>Search for your potential donor tube. Compatible tubes will appear normally at the top of the search results; incompatible tubes will be greyed out at the bottom.</li>
         </ol>
+
+        <p><strong>Tube compatibility is not a guarantee that you can swap!</strong> You must also measure the yoke resistance and possibly swap the yoke.</p>
 
         <h1>Legend</h1>
         <table id="legend">

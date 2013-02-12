@@ -181,7 +181,9 @@ form > label {
 }
 
 #help p,
-#help ol {
+#help ol,
+#help ul
+{
     text-align: left;
     width: 90%;
     margin: auto;
@@ -189,17 +191,25 @@ form > label {
     font-size: 85%;
 }
 
-#help ol {
+#help ol,
+#help ul
+{
     margin: 1em 10%;
 }
 
 #help h1 {
     weight: normal;
     text-align: left;
+    border-bottom: 1px solid #aaa;
+    margin-bottom: .5em;
 }
 
 #help emph {
     font-style: italic;
+}
+
+#help strong {
+    font-weight: bold;
 }
 
 #help ol li {
