@@ -182,13 +182,6 @@ function clearReferenced() {
     tube.focus();
 };
 
-function isCompatible(tubeA, tubeB) {
-    return tubeA[1] == tubeB[1] &&  // Heater voltage
-           tubeA[2] == tubeB[2] &&  // Socket
-           tubeA[3] == tubeB[3] &&  // Color / mono
-           tubeA[4] == tubeB[4]     // G1 voltage
-};
-
 function inchesToMm(inches) {
     return inches * 2.540;
 }
@@ -202,7 +195,7 @@ function sizeInMm(tube) {
 
 
 
-function makeRow(tube) {
+function makeRowBK(tube) {
     var row = document.createElement("tr");
     var classes = ["type"];
     if (tube[3] == 1) {
@@ -218,13 +211,17 @@ function makeRow(tube) {
 
     var modelCell = document.createElement("td");
     modelCell.appendChild(document.createTextNode(tube[0]));
+
     var heaterCell = document.createElement("td");
     heaterCell.appendChild(document.createTextNode(tube[1] + "v"));
+
     var crcaCell = document.createElement("td");
     crcaCell.appendChild(document.createTextNode("CR-" + tube[2]));
+
     var typeCell = document.createElement("td");
     typeCell.appendChild(document.createElement("span"));
     typeCell.setAttribute("class", classes.join(" "));
+
     var g1Cell = document.createElement("td");
     g1Cell.appendChild(document.createTextNode(tube[4] + "v"));
 
@@ -236,6 +233,62 @@ function makeRow(tube) {
     row.tube = tube;
     return row;
 };
+
+function isCompatibleBK(tubeA, tubeB) {
+    return tubeA[1] == tubeB[1] &&  // Heater voltage
+    tubeA[2] == tubeB[2] &&         // Socket
+    tubeA[3] == tubeB[3] &&         // Color / mono
+    tubeA[4] == tubeB[4]            // G1 voltage
+};
+
+
+// Sencore-specific code
+
+function makeRowSencore(tube) {
+    var row = document.createElement("tr");
+
+    var typeCell = document.createElement("td");
+    typeCell.appendChild(document.createElement("span"));
+    // Sencore data doesn't indicate color/B&W or gun swaps.
+    typeCell.setAttribute("class", "type color");
+
+    var modelCell = document.createElement("td");
+    modelCell.appendChild(document.createTextNode(tube[0]));
+
+    var heaterCell = document.createElement("td");
+    heaterCell.appendChild(document.createTextNode(tube[3] + "v"));
+
+    var biasCell = document.createElement("td");
+    biasCell.appendChild(document.createTextNode(tube[4]));
+
+    var socketCell = document.createElement("td");
+    socketCell.appendChild(document.createTextNode(tube[1]));
+
+    row.appendChild(typeCell);
+    row.appendChild(modelCell);
+    row.appendChild(heaterCell);
+    row.appendChild(biasCell);
+    row.appendChild(socketCell);
+    row.tube = tube;
+    return row;
+};
+
+function isCompatibleSencore(tubeA, tubeB) {
+    return tubeA[3] == tubeB[3] &&  // Heater (filament) voltage
+    tubeA[1] == tubeB[1] &&         // Socket
+    tubeA[4] == tubeB[4]            // Bias
+};
+
+
+// Mode thunks
+
+if (mode == 'bk') {
+    var makeRow = makeRowBK;
+    var isCompatible = isCompatibleBK;
+} else {
+    var makeRow = makeRowSencore;
+    var isCompatible = isCompatibleSencore;
+}
 
 function rowFor(tube) {
     if (!tube.row) {
