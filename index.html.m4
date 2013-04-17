@@ -10,7 +10,7 @@
             include(monitor.css)
         </style>
         <script type="text/javascript">
-            include(monitor_data.js.o)
+            include(__TYPE__`'_data.js.o)
         </script>
     </head>
 <body>
@@ -20,10 +20,7 @@
         <thead>
             <tr>
                 <th></th>
-                <th>Tube</th>
-                <th>Heater</th>
-                <th>G1</th>
-                <th>Neck</th>
+                include(__TYPE__`'_headers.html.m4)
             </tr>
         </thead>
         <tbody id="compatRes">
