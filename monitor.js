@@ -3,6 +3,12 @@ var referenceTube;
 var t;
 
 function initialize() {
+    document.onkeyup = function(event) {
+        if (event.keyCode == 27) {
+            help.style.display = "none";
+        }
+    }
+
     tube.onkeydown = function(event) {
         var state = getState();
         hideLabel();
