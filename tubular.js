@@ -11,6 +11,7 @@
 
 var tube = document.getElementById("tube");
 var t;
+var index = indexTubes(tubes);
 
 function initialize() {
     document.onkeyup = function(event) {
@@ -39,6 +40,22 @@ function initialize() {
     var form = document.getElementsByTagName("form")[0];
     form.onsubmit = searchEvent;
 
+    var searchRes = document.getElementById("res")
+    searchRes.onclick = function(event) {
+        var node = event.target;
+        while (node.tube == undefined | node.tagName == "body") {
+            node = node.parentNode;
+        }
+        if (! node.tube) {
+            return;
+        }
+
+        var s = "xref:" + node.tube[0];
+        tube.value = s
+        searchFor(s);
+        updateState();
+    };
+
     var readyStateCheckInterval = setInterval(function() {
         if (document.readyState === "complete") {
             initializeState();
@@ -49,6 +66,14 @@ function initialize() {
         }
     }, 10);
 };
+
+function indexTubes(tubes) {
+    var index = {};
+    for (var i in tubes) {
+        index[tubes[i][0]] = tubes[i]
+    }
+    return index;
+}
 
 
 
@@ -99,7 +124,7 @@ function parseState(state) {
         return stateObj;
     }
     var cpts = state.split(",");
-    for (i in cpts) {
+    for (var i in cpts) {
         switch (cpts[i].substring(0, 2)) {
         case "s/":
             stateObj.search = cpts[i].substring(2);
@@ -114,10 +139,9 @@ function updateState() {
         getState(), document.title, "#" + getStateHash());
 };
 
-
 function buildTitle(state)
 {
-    var title = "Monitor Helper -";
+    var title = "Tubular -";
     if (state.search) {
         title += " Search for " + state.search;
     }
@@ -129,10 +153,7 @@ function setTitle(state) {
 };
 
 
-// Compatibility
-
-
-
+// BK Precision specific code
 
 function makeRowBK(tube) {
     var row = document.createElement("tr");
@@ -236,12 +257,10 @@ function rowFor(tube) {
     return tube.row;
 };
 
+
+
 function getTube(tube) {
-    for (i in tubes) {
-        if (tubes[i][0] == tube) {
-            return tubes[i];
-        }
-    }
+    return index[tube];
 };
 
 function flush(node) {
@@ -258,6 +277,62 @@ function hideLabel() {
     document.getElementsByTagName("label")[0].style.display = "none";
 }
 
+
+// Search code
+
+var predicateMap = {
+    "xref": xrefPredicate
+};
+
+function regexPredicate(search) {
+    var exp = new RegExp(search, "i");
+    return function(mTube) {
+        return mTube[0].search(exp) !== -1;
+    };
+};
+
+function xrefPredicate(xrefTube) {
+    var ti = index[xrefTube.toUpperCase()];
+    if (ti == undefined) {
+        console.warn("No such tube: " + xrefTube);
+        return function(mTube) {
+            return false;
+        }
+    }
+    return function(mTube) {
+        return isCompatible(ti, mTube);
+    };
+}
+
+function combinePredicates(preds) {
+    return function(x) {
+        for (var i in preds) {
+            if (!preds[i](x)) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+/**
+ * Turn the search text into a predicate to apply to the tube list
+ */
+function makePredicates(text) {
+    var tokens = text.split(/\s+/);
+    var predicates = []
+    for (var i in tokens) {
+        var m = tokens[i].match(/^([a-z]+):(.*)/)
+        if (m && m[1] in predicateMap) {
+            // Operator
+            predicates.push(predicateMap[m[1]](m[2]))
+        } else {
+            predicates.push(regexPredicate(tokens[i]))
+        }
+    }
+    return combinePredicates(predicates)
+};
+
 function searchEvent(event) {
     if (event) {
         event.stopPropagation();
@@ -272,30 +347,20 @@ function searchEvent(event) {
     return false;
 };
 
-function regexPredicate(search) {
-    var exp = new RegExp(search, "i");
-    return function(mTube) {
-        return mTube[0].search(exp) !== -1;
-    };
-}
-
-function searchFor(tube) {
-    var predicate = regexPredicate(tube)
+function searchFor(text) {
+    var predicate = makePredicates(text);
     var tbody = document.getElementById("res");
     flush(tbody);
-    if (! tube) {
+    if (! text) {
         clearSearch();
         return;
     }
     document.getElementById("search").style.display = "table";
-    var x = 0;
     for (i in tubes) {
         if (!predicate(tubes[i])) {
             continue;
         }
-        var row = rowFor(tubes[i])
-        tbody.appendChild(row);
-        x++;
+        tbody.appendChild(rowFor(tubes[i]));
     }
 };
 
