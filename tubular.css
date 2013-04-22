@@ -1,3 +1,13 @@
+/**
+ *
+ *   __          __           __
+ *  |  |_.--.--.|  |--.--.--.|  |.---.-.----.
+ *  |   _|  |  ||  _  |  |  ||  ||  _  |   _|
+ *  |____|_____||_____|_____||__||___._|__|
+ *
+ * © Copyright 2013 Ian Eure.
+ * Author: Ian Eure <ian.eure@gmail.com>
+ */
 
 html, body {
     width: 100%;
@@ -29,7 +39,7 @@ td {
     vertical-align: middle;
 }
 
-#compatRes tr:hover > td {
+#res tr:hover > td {
     background: -webkit-gradient(linear, left top, left bottom, from(#b6cde3), to(#79b4e8));
     color: #454545;
 }
@@ -133,110 +143,4 @@ form > label {
     vertical-align: bottom;
     top: .25em;
     left: 1.25em;
-}
-
-#compat {
-    color: #aaa;
-}
-
-#reference {
-    display: none;
-}
-
-#clearReference {
-    width: 1em;
-    height: 1em;
-    padding: .15em .15em .1em .15em;
-    display: inline-block;
-    text-shadow: .05em .05em .1em #454545;
-    color: white;
-    background: #e9826e;
-    background: -webkit-gradient(linear, left top, right bottom, from(#f3bbb0), to(#e9826e));
-    border: 2px solid #7f7f7f;
-    border-radius: 1em;
-    line-height: .75em;
-    vertical-align: top;
-    font-size: 24pt;
-}
-
-#clearReference:hover {
-    color: #545454;
-    border-color: #7f7f7f;
-    text-shadow: none;
-    background: -webkit-gradient(linear, left top, right bottom, from(#e9826e), to(#f3bbb0));
-}
-
-#help {
-    width: 80%;
-    font-size: .8em;
-    font-weight: lighter;
-    border: 2px solid #aaa;
-    border-radius: .75em;
-    background: #fafafa;
-    position: absolute;
-    padding: 2%;
-    top: 1em;
-    left: 8%;
-    display: none;
-}
-
-#help p,
-#help ol,
-#help ul
-{
-    text-align: left;
-    width: 90%;
-    margin: auto;
-    margin-bottom: 1em;
-    font-size: 85%;
-}
-
-#help ol,
-#help ul
-{
-    margin: 1em 10%;
-}
-
-#help h1 {
-    weight: normal;
-    text-align: left;
-    border-bottom: 1px solid #aaa;
-    margin-bottom: .5em;
-}
-
-#help emph {
-    font-style: italic;
-}
-
-#help strong {
-    font-weight: bold;
-}
-
-#help ol li {
-    list-style: decimal outside;
-}
-
-#help #dismiss {
-    margin-top: 1em;
-    text-align: right;
-}
-
-#help #legend {
-    display: table;
-}
-
-#showhelp {
-    position: absolute;
-    top: .15em;
-    right: 0;
-    border: 2px solid #aaa;
-    border-radius: 15%;
-    display: block;
-    width: 1em;
-    height: 1em;
-    line-height: 1em;
-    background: -webkit-gradient(linear, left top, right bottom, from(#fffcd2), to(#fffa6c));
-    color: #af651c;
-    cursor: hand;
-    user-select: none;
 }

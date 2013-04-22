@@ -2,7 +2,7 @@ JS     := $(wildcard *.js)
 #JS_OBJ := $(JS:%=%.o)
 JCC     = closure-compiler
 MAKES   = bk sencore
-SHARED  = reset.css monitor.css monitor.js.o Makefile
+SHARED  = reset.css tubular.css tubular.js.o Makefile
 
 all: bk.html sencore.html
 

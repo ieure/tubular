@@ -1,5 +1,15 @@
+/**
+ *
+ *   __          __           __
+ *  |  |_.--.--.|  |--.--.--.|  |.---.-.----.
+ *  |   _|  |  ||  _  |  |  ||  ||  _  |   _|
+ *  |____|_____||_____|_____||__||___._|__|
+ *
+ * © Copyright 2013 Ian Eure.
+ * Author: Ian Eure <ian.eure@gmail.com>
+ */
+
 var tube = document.getElementById("tube");
-var referenceTube;
 var t;
 
 function initialize() {
@@ -28,38 +38,6 @@ function initialize() {
 
     var form = document.getElementsByTagName("form")[0];
     form.onsubmit = searchEvent;
-
-    var reference = document.getElementById("clearReference");
-    reference.onclick = function(event) {
-        clearReferenced();
-        searchEvent(event);
-    };
-
-    var searchRes = document.getElementById("compatRes")
-    searchRes.onclick = function(event) {
-        var node = event.target;
-        while (node.tube == undefined | node.tagName == "body") {
-            node = node.parentNode;
-        }
-        if (! node.tube) {
-            return;
-        }
-        setReferenceTube(node.tube);
-        clearSearch();
-    };
-
-    // Help
-    var showHelp = document.getElementById("showhelp");
-    var help = document.getElementById("help");
-
-    showHelp.onclick = function(event) {
-        help.style.display = "block";
-    }
-
-    help.onclick = function(event) {
-        help.style.display = "none";
-        history.popState();
-    }
 
     var readyStateCheckInterval = setInterval(function() {
         if (document.readyState === "complete") {
@@ -91,12 +69,6 @@ function restoreState(state) {
         tube.value = state.search;
         hideLabel();
     }
-    if (state.compat) {
-        setReferenceTube(getTube(state.compat));
-    } else {
-        clearReferenced();
-    }
-
     searchFor(state.search);
     setTitle(state);
 };
@@ -105,9 +77,6 @@ function getState() {
     var stateObj = new Object;
     if (tube.value) {
         stateObj.search = tube.value.trim();
-    }
-    if (referenceTube) {
-        stateObj.compat = referenceTube[0];
     }
     return stateObj;
 };
@@ -120,9 +89,6 @@ function hashForState(state) {
     var stateCpts = new Array;
     if (state.search) {
         stateCpts.push("s/" + state.search);
-    }
-    if (state.compat) {
-        stateCpts.push("c/" + state.compat);
     }
     return stateCpts.join(",");
 };
@@ -137,9 +103,6 @@ function parseState(state) {
         switch (cpts[i].substring(0, 2)) {
         case "s/":
             stateObj.search = cpts[i].substring(2);
-            break;
-        case "c/":
-            stateObj.compat = cpts[i].substring(2);
             break;
         }
     };
@@ -158,9 +121,6 @@ function buildTitle(state)
     if (state.search) {
         title += " Search for " + state.search;
     }
-    if (state.compat) {
-        title += " Compatible with " + state.compat;
-    }
     return title;
 };
 
@@ -171,33 +131,6 @@ function setTitle(state) {
 
 // Compatibility
 
-function setReferenceTube(tube) {
-    referenceTube = tube;
-
-    var compat = document.getElementById("compat");
-    flush(compat);
-    compat.appendChild(document.createTextNode(tube[0]));
-    document.getElementById("reference").style.display = "block";
-    return tube;
-};
-
-function clearReferenced() {
-    document.getElementById("reference").style.display = "none";
-    referenceTube = undefined;
-    updateState();
-    tube.focus();
-};
-
-function inchesToMm(inches) {
-    return inches * 2.540;
-}
-
-function sizeInMm(tube) {
-    if (tube[0][0] == "A") {
-        return tube[0].substring(1, 2);
-    }
-    return inchesToMm(tube[0].substring(0, 2));
-};
 
 
 
@@ -348,8 +281,7 @@ function regexPredicate(search) {
 
 function searchFor(tube) {
     var predicate = regexPredicate(tube)
-    var tbody = document.getElementById("compatRes");
-    var incompatBody = document.getElementById("incompatRes");
+    var tbody = document.getElementById("res");
     flush(tbody);
     if (! tube) {
         clearSearch();
@@ -362,22 +294,13 @@ function searchFor(tube) {
             continue;
         }
         var row = rowFor(tubes[i])
-        var body = undefined;
-        if (!referenceTube ||
-            (referenceTube && isCompatible(referenceTube, tubes[i]))) {
-            body = tbody
-        } else {
-            body = incompatBody;
-        }
-        body.appendChild(row);
+        tbody.appendChild(row);
         x++;
     }
 };
 
 function clearSearch() {
     tube.value = "";
-    flush(document.getElementById("compatRes"));
-    flush(document.getElementById("incompatRes"));
     document.getElementById("search").style.display = "none";
     showLabel();
     updateState();

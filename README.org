@@ -1,7 +1,15 @@
-* Monitors
-  This is a simple searchable database of CRT information. It’s useful
-  if you’re rejuvenating a CRT or [[http://www.junknet.net/donor-tvs][looking for a donor tube to swap
-  into an arcade monitor.]]
+#+BEGIN_SRC text
+ __          __           __
+|  |_.--.--.|  |--.--.--.|  |.---.-.----.
+|   _|  |  ||  _  |  |  ||  ||  _  |   _|
+|____|_____||_____|_____||__||___._|__|
+#+END_SRC
+
+  Tubular is a collection of tools for repairing CRT display devices,
+  particularly arcade video game monitors. It includes a simple
+  searchable database of CRT information. It’s useful if you’re
+  rejuvenating a CRT or [[http://www.junknet.net/donor-tvs][looking for a donor tube to swap into an
+  arcade monitor.]]
 
 * Features
   - Includes tube model, heater & G1 voltages, neck socket type,
