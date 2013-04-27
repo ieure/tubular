@@ -30,8 +30,11 @@ form {
     display: relative;
 }
 
-table {
+#search {
     display: none;
+}
+
+table {
     font-weight: lighter;
 }
 
@@ -119,7 +122,7 @@ th, td {
     text-align: left;
 }
 
-tbody tr:nth-child(odd) {
+#ref tbody tr:nth-child(odd) {
     background-color: #eef7ee;
 }
 
@@ -137,7 +140,7 @@ form {
     padding: 0;
 }
 
-form > label {
+#ref form > label {
     position: absolute;
     color: #aaa;
     vertical-align: bottom;

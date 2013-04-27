@@ -13,17 +13,24 @@ var tube = document.getElementById("tube");
 var t;
 var index = indexTubes(tubes);
 
-function initialize() {
-    document.onkeyup = function(event) {
-        if (event.keyCode == 27) {
-            help.style.display = "none";
-        }
-    }
 
+function debounce(delay, handler) {
+    var timer;
+    return function(event) {
+        if (timer) {
+            window.clearTimeout(timer);
+        }
+        timer = setTimeout(handler, delay);
+    };
+};
+
+function initialize() {
     tube.onkeydown = function(event) {
         var state = getState();
         hideLabel();
-    }
+    };
+
+    tube.onkeyup = debounce(200, searchEvent);
 
     tube.onkeyup = function(event) {
         var state = getState();
@@ -71,7 +78,7 @@ function indexTubes(tubes) {
     var index = {};
     for (var i in tubes) {
         index[tubes[i][0]] = tubes[i]
-    }
+    };
     return index;
 }
 
@@ -284,6 +291,23 @@ var predicateMap = {
     "xref": xrefPredicate
 };
 
+function substringOrRegexPredicate(search) {
+    if (isRegex(search)) {
+        return regexPredicate(search);
+    }
+    return substringPredicate(search.toUpperCase());
+};
+
+function isRegex(search) {
+    return search.toLowerCase().search(/^[a-z0-9]+$/) == -1;
+};
+
+function substringPredicate(search) {
+    return function(mTube) {
+        return mTube[0].indexOf(search) !== -1;
+    };
+};
+
 function regexPredicate(search) {
     var exp = new RegExp(search, "i");
     return function(mTube) {
@@ -319,7 +343,11 @@ function combinePredicates(preds) {
  * Turn the search text into a predicate to apply to the tube list
  */
 function makePredicates(text) {
-    var tokens = text.split(/\s+/);
+    if (text.trim() == "") {
+        var tokens = [];
+    } else {
+        var tokens = text.split(/\s+/);
+    }
     var predicates = []
     for (var i in tokens) {
         var m = tokens[i].match(/^([a-z]+):(.*)/)
@@ -327,7 +355,7 @@ function makePredicates(text) {
             // Operator
             predicates.push(predicateMap[m[1]](m[2]))
         } else {
-            predicates.push(regexPredicate(tokens[i]))
+            predicates.push(substringOrRegexPredicate(tokens[i]))
         }
     }
     return combinePredicates(predicates)
