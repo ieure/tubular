@@ -288,7 +288,7 @@ function hideLabel() {
 // Predicates
 
 var predicateMap = [
-    [/^xref:/, xrefPredicate]
+    [/^(xref:)(.*)/, xrefPredicate]
 ];
 
 function substringOrRegexPredicate(search) {
@@ -346,8 +346,9 @@ function combinePredicates(preds) {
 
 function predicateFor(token) {
     for (i in predicateMap) {
-        if (token.match(predicateMap[i][0])) {
-            return predicateMap[i][1];
+        var m = token.match(predicateMap[i][0]);
+        if (m) {
+            return predicateMap[i][1](m[2]);
         }
     }
     return substringOrRegexPredicate(token);
@@ -364,7 +365,6 @@ function makePredicates(text) {
     }
     var predicates = []
     for (var i in tokens) {
-        var m = tokens[i].match(/^([a-z]+):(.*)/)
         predicates.push(predicateFor(tokens[i]));
     }
     return combinePredicates(predicates)
