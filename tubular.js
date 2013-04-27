@@ -287,9 +287,9 @@ function hideLabel() {
 
 // Search code
 
-var predicateMap = {
-    "xref": xrefPredicate
-};
+var predicateMap = [
+    [/^xref:/, xrefPredicate]
+];
 
 function substringOrRegexPredicate(search) {
     if (isRegex(search)) {
@@ -309,7 +309,12 @@ function substringPredicate(search) {
 };
 
 function regexPredicate(search) {
-    var exp = new RegExp(search, "i");
+    try {
+        var exp = new RegExp(search, "i");
+    } catch(ex) {
+        return substringPredicate(search.toUpperCase());
+    }
+
     return function(mTube) {
         return mTube[0].search(exp) !== -1;
     };
@@ -326,7 +331,7 @@ function xrefPredicate(xrefTube) {
     return function(mTube) {
         return isCompatible(ti, mTube);
     };
-}
+};
 
 function combinePredicates(preds) {
     return function(x) {
@@ -337,7 +342,16 @@ function combinePredicates(preds) {
         }
         return true;
     }
-}
+};
+
+function predicateFor(token) {
+    for (i in predicateMap) {
+        if (token.match(predicateMap[i][0])) {
+            return predicateMap[i][1];
+        }
+    }
+    return substringOrRegexPredicate(token);
+};
 
 /**
  * Turn the search text into a predicate to apply to the tube list
@@ -351,12 +365,7 @@ function makePredicates(text) {
     var predicates = []
     for (var i in tokens) {
         var m = tokens[i].match(/^([a-z]+):(.*)/)
-        if (m && m[1] in predicateMap) {
-            // Operator
-            predicates.push(predicateMap[m[1]](m[2]))
-        } else {
-            predicates.push(substringOrRegexPredicate(tokens[i]))
-        }
+        predicates.push(predicateFor(tokens[i]));
     }
     return combinePredicates(predicates)
 };
