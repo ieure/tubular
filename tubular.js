@@ -381,10 +381,10 @@ function searchEvent(event) {
     var state = getState();
     if (event && event.type == "submit" ||
         (state.search && state.search.length > 1)) {
-        setTitle(state);
         searchFor(state.search);
-        updateState();
     }
+    setTitle(state);
+    updateState();
     return false;
 };
 
