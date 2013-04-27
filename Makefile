@@ -3,8 +3,9 @@ JS     := $(wildcard *.js)
 JCC     = closure-compiler
 MAKES   = bk sencore
 SHARED  = reset.css tubular.css tubular.js.o Makefile
+TARGETS = bk.html sencore.html
 
-all: bk.html sencore.html
+all: $(TARGETS)
 
 index.html: bk.html
 	ln -s $^ $@
@@ -17,6 +18,9 @@ sencore.html: index.html.m4 sencore_headers.html.m4 sencore_data.js.o $(SHARED)
 
 %.js.o: %.js
 	$(JCC) --js $^ --js_output_file $@
+
+dist: all
+	s3cmd put $(TARGETS) s3://tubular.atomized.org
 
 clean:
 	rm -f index.html $(JS_OBJ)
