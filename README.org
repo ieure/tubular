@@ -1,9 +1,4 @@
-#+BEGIN_SRC text
- __         __          __
-|  |_.--.--|  |--.--.--|  |---.-.----.
-|   _|  |  |  _  |  |  |  |  _  |   _|
-|____|_____|_____|_____|__|___._|__|
-#+END_SRC
+* Tubular
 
   Tubular is a collection of tools for repairing CRT display devices,
   particularly arcade video game monitors. It includes a simple
