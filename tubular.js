@@ -285,7 +285,7 @@ function hideLabel() {
 }
 
 
-// Search code
+// Predicates
 
 var predicateMap = [
     [/^xref:/, xrefPredicate]
@@ -369,6 +369,9 @@ function makePredicates(text) {
     }
     return combinePredicates(predicates)
 };
+
+
+// Searching
 
 function searchEvent(event) {
     if (event) {
