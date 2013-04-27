@@ -349,7 +349,7 @@ function predicateFor(token) {
     for (i in predicateMap) {
         var m = token.match(predicateMap[i][0]);
         if (m) {
-            return predicateMap[i][1](m[-1]);
+            return predicateMap[i][1](m[m.length - 1]);
         }
     }
     return substringOrRegexPredicate(token);
