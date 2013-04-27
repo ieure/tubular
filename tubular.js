@@ -61,6 +61,7 @@ function initialize() {
         tube.value = s
         searchFor(s);
         updateState();
+        tube.focus();
     };
 
     var readyStateCheckInterval = setInterval(function() {
