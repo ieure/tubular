@@ -13,6 +13,9 @@ var tube = document.getElementById("tube");
 var t;
 var index = indexTubes(tubes);
 
+var CINCOMPAT = 0;              // Incompatible
+var CCOMPAT = 1;                // Compatible
+var CMAYBE = 2;                 // Maybe compatible
 
 function debounce(delay, handler) {
     var timer;
@@ -206,7 +209,8 @@ function isCompatibleBK(tubeA, tubeB) {
     return tubeA[1] == tubeB[1] &&  // Heater voltage
     tubeA[2] == tubeB[2] &&         // Socket
     tubeA[3] == tubeB[3] &&         // Color / mono
-    tubeA[4] == tubeB[4]            // G1 voltage
+    tubeA[4] == tubeB[4] &&         // G1 voltage
+    CCOMPAT
 };
 
 
@@ -244,7 +248,8 @@ function makeRowSencore(tube) {
 function isCompatibleSencore(tubeA, tubeB) {
     return tubeA[3] == tubeB[3] &&  // Heater (filament) voltage
     tubeA[1] == tubeB[1] &&         // Socket
-    tubeA[4] == tubeB[4]            // Bias
+    tubeA[4] == tubeB[4] &&         // Bias
+    CCOMPAT
 };
 
 
