@@ -294,7 +294,8 @@ function hideLabel() {
 // Predicates
 
 var predicateMap = [
-    [/^(xref:)(.*)/, xrefPredicate]
+    [/^(xref:)(.*)/, xrefPredicate],
+    [/^(cr-?)([0-9]+)/i, adapterPredicate]
 ];
 
 function substringOrRegexPredicate(search) {
@@ -338,6 +339,13 @@ function xrefPredicate(xrefTube) {
         return isCompatible(ti, mTube);
     };
 };
+
+function adapterPredicate(adapter) {
+    var adapter = parseInt(adapter);
+    return function(mTube) {
+        return mTube[2] == adapter;
+    };
+}
 
 function combinePredicates(preds) {
     return function(x) {
