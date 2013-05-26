@@ -379,6 +379,11 @@ function makePredicates(text) {
 
 // Searching
 
+/**
+ * Handler for a search event.
+ *
+ * Updates title / state and fires off the search.
+ */
 function searchEvent(event) {
     if (event) {
         event.stopPropagation();
@@ -393,11 +398,15 @@ function searchEvent(event) {
     return false;
 };
 
+/**
+ * Perform a search
+ */
 function searchFor(text) {
     var predicate = makePredicates(text);
     var tbody = document.getElementById("res");
     flush(tbody);
     if (! text) {
+        // Empty search - clear everything out.
         clearSearch();
         return;
     }
