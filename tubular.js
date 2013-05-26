@@ -401,13 +401,15 @@ function searchFor(text) {
         clearSearch();
         return;
     }
-    document.getElementById("search").style.display = "table";
+    // Hide the table while we mutate the body to avoid browser lag.
+    document.getElementById("search").style.display = "none";
     for (i in tubes) {
         if (!predicate(tubes[i])) {
             continue;
         }
         tbody.appendChild(rowFor(tubes[i]));
     }
+    document.getElementById("search").style.display = "table";
 };
 
 function clearSearch() {
