@@ -253,6 +253,29 @@ function isCompatibleSencore(tubeA, tubeB) {
 };
 
 
+// Tube size
+
+var centimeterSize = /^[WAM]([0-9]+)/i;
+var inchSize = /^([0-9]{2})/;
+var mmSize = /^([0-9]{3})/;
+function tubeSizeInInches(tube) {
+    var centis = centimeterSize.exec(tube);
+    if (centis != null) {
+        return Math.round(parseInt(centis[1]) * 0.393701);
+    }
+
+    var mm = mmSize.exec(tube);
+    if (mm != null) {
+        return Math.ceil(parseInt(mm[1]) * 0.0393701);
+    }
+
+    var inches = inchSize.exec(tube);
+    if (inches != null) {
+        return parseInt(inches[1]);
+    }
+};
+
+
 // Mode thunks
 
 if (mode == 'bk') {
@@ -295,7 +318,8 @@ function hideLabel() {
 
 var predicateMap = [
     [/^(xref:)(.*)/, xrefPredicate],
-    [/^(cr-?)([0-9]+)/i, adapterPredicate]
+    [/^(cr-?)([0-9]+)/i, adapterPredicate],
+    [/^([0-9]+)"/, sizePredicate]
 ];
 
 function substringOrRegexPredicate(search) {
@@ -345,7 +369,14 @@ function adapterPredicate(adapter) {
     return function(mTube) {
         return mTube[2] == adapter;
     };
-}
+};
+
+function sizePredicate(size) {
+    var size = parseInt(size);
+    return function(mTube) {
+        return tubeSizeInInches(mTube[0]) == size;
+    }
+};
 
 function combinePredicates(preds) {
     return function(x) {
