@@ -27,8 +27,8 @@ var chassis = {
         "13G07-FBO": {
             "tube": "370ESB22",
             "yoke": {
-                "h": undefined,
-                "v": undefined
+                "h": undefined, // FIXME
+                "v": undefined  // FIXME
             }
         }
     }
