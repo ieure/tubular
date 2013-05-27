@@ -23,7 +23,8 @@
                         include(__TYPE__`'_headers.html.m4)
                     </tr>
                 </thead>
-                <tbody id="res">
+                <tbody id="compatRes">
+                <tbody id="maybeRes">
             </table>
             <script type="text/javascript">
                 include(tubular.js.o)
