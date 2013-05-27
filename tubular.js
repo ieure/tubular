@@ -35,6 +35,22 @@ function debounce(delay, handler) {
     };
 };
 
+function xrefEvent(event) {
+    var node = event.target;
+    while (node.tube == undefined | node.tagName == "body") {
+        node = node.parentNode;
+    }
+    if (! node.tube) {
+        return;
+    }
+
+    var s = "xref:" + node.tube[0];
+    tube.value = s
+    searchFor(s);
+    updateState();
+    tube.focus();
+};
+
 function initialize() {
     tube.onkeydown = function(event) {
         var state = getState();
@@ -58,22 +74,7 @@ function initialize() {
     var form = document.getElementsByTagName("form")[0];
     form.onsubmit = searchEvent;
 
-    var searchRes = document.getElementById("res")
-    searchRes.onclick = function(event) {
-        var node = event.target;
-        while (node.tube == undefined | node.tagName == "body") {
-            node = node.parentNode;
-        }
-        if (! node.tube) {
-            return;
-        }
-
-        var s = "xref:" + node.tube[0];
-        tube.value = s
-        searchFor(s);
-        updateState();
-        tube.focus();
-    };
+    document.getElementsByTagName("table")[0].onclick = xrefEvent;
 
     var readyStateCheckInterval = setInterval(function() {
         if (document.readyState === "complete") {
