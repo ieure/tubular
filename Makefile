@@ -21,6 +21,8 @@ sencore.html: index.html.m4 sencore_headers.html.m4 sencore_data.js.o $(SHARED)
 
 dist: all
 	s3cmd put $(TARGETS) s3://tubular.atomized.org
+	s3cmd setacl --acl-public s3://tubular.atomized.org/bk.html \
+	    s3://tubular.atomized.org/sencore.html
 
 clean:
 	rm -f index.html $(JS_OBJ)
