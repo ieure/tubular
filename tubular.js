@@ -341,7 +341,7 @@ var predicateMap = [
     [/^(cr-?)([0-9]+)/i, adapterPredicate],
     [/^([0-9]+)"/, sizePredicate],
     [/(bw)/, bwPredicate],
-    [/(color)/, colorPredicate],
+    [/(color)/, colorPredicate]
 ];
 
 function substringOrRegexPredicate(search) {
