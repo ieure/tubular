@@ -27,7 +27,7 @@
             </tr>
         </thead>
         <tbody id="compatRes">
-        <tbody id="incompatRes">
+        <tbody id="maybeRes">
     </table>
 
     <div id="help">

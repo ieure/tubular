@@ -13,9 +13,17 @@ var tube = document.getElementById("tube");
 var t;
 var index = indexTubes(tubes);
 
-var CINCOMPAT = 0;              // Incompatible
 var CCOMPAT = 1;                // Compatible
 var CMAYBE = 2;                 // Maybe compatible
+var CINCOMPAT = 3;              // Incompatible
+
+function boolCompat(r) {
+    if (r) {
+        return CCOMPAT;
+    } else {
+        return CINCOMPAT;
+    }
+}
 
 function debounce(delay, handler) {
     var timer;
@@ -206,11 +214,17 @@ function makeRowBK(tube) {
 };
 
 function isCompatibleBK(tubeA, tubeB) {
-    return tubeA[1] == tubeB[1] &&  // Heater voltage
-    tubeA[2] == tubeB[2] &&         // Socket
-    tubeA[3] == tubeB[3] &&         // Color / mono
-    tubeA[4] == tubeB[4] &&         // G1 voltage
-    CCOMPAT
+    if (tubeA[1] == tubeB[1] &&  // Heater voltage
+        tubeA[2] == tubeB[2] &&  // Socket
+        tubeA[3] == tubeB[3] &&  // Color / mono
+        tubeA[4] == tubeB[4]) {  // G1 voltage
+        if (tubeSizeInInches(tubeA[0]) == tubeSizeInInches(tubeB[0])) {
+            return CCOMPAT;
+        }
+        return CMAYBE;
+    }
+
+    return CINCOMPAT;
 };
 
 
@@ -246,10 +260,15 @@ function makeRowSencore(tube) {
 };
 
 function isCompatibleSencore(tubeA, tubeB) {
-    return tubeA[3] == tubeB[3] &&  // Heater (filament) voltage
-    tubeA[1] == tubeB[1] &&         // Socket
-    tubeA[4] == tubeB[4] &&         // Bias
-    CCOMPAT
+    if (tubeA[3] == tubeB[3] &&  // Heater (filament) voltage
+        tubeA[1] == tubeB[1] &&  // Socket
+        tubeA[4] == tubeB[4]) {  // Bias
+        if (tubeSizeInInches(tubeA[0]) == tubeSizeInInches(tubeB[0])) {
+            return CCOMPAT;
+        }
+        return CMAYBE;
+    }
+    return CINCOMPAT;
 };
 
 
@@ -319,7 +338,9 @@ function hideLabel() {
 var predicateMap = [
     [/^(xref:)(.*)/, xrefPredicate],
     [/^(cr-?)([0-9]+)/i, adapterPredicate],
-    [/^([0-9]+)"/, sizePredicate]
+    [/^([0-9]+)"/, sizePredicate],
+    [/(bw)/, bwPredicate],
+    [/(color)/, colorPredicate],
 ];
 
 function substringOrRegexPredicate(search) {
@@ -335,7 +356,7 @@ function isRegex(search) {
 
 function substringPredicate(search) {
     return function(mTube) {
-        return mTube[0].indexOf(search) !== -1;
+        return boolCompat(mTube[0].indexOf(search) !== -1);
     };
 };
 
@@ -347,7 +368,7 @@ function regexPredicate(search) {
     }
 
     return function(mTube) {
-        return mTube[0].search(exp) !== -1;
+        return boolCompat(mTube[0].search(exp) !== -1);
     };
 };
 
@@ -356,7 +377,7 @@ function xrefPredicate(xrefTube) {
     if (ti == undefined) {
         console.warn("No such tube: " + xrefTube);
         return function(mTube) {
-            return false;
+            return CINCOMPAT;
         }
     }
     return function(mTube) {
@@ -367,25 +388,43 @@ function xrefPredicate(xrefTube) {
 function adapterPredicate(adapter) {
     var adapter = parseInt(adapter);
     return function(mTube) {
-        return mTube[2] == adapter;
+        return boolCompat(mTube[2] == adapter);
     };
 };
 
 function sizePredicate(size) {
     var size = parseInt(size);
     return function(mTube) {
-        return tubeSizeInInches(mTube[0]) == size;
+        return boolCompat(tubeSizeInInches(mTube[0]) == size);
     }
 };
 
+function bwPredicate(ignore) {
+    return function(mTube) {
+        return boolCompat(mTube[3] == 0);
+    }
+}
+
+function colorPredicate(ignore) {
+    return function(mTube) {
+        return boolCompat(mTube[3] == 1);
+    }
+}
+
 function combinePredicates(preds) {
     return function(x) {
-        for (var i in preds) {
-            if (!preds[i](x)) {
-                return false;
-            }
+        if (preds.size == 0) {
+            return CINCOMPAT;
         }
-        return true;
+        var rs = new Array(preds.size);
+        for (var i in preds) {
+            var r = preds[i](x);
+            if (r == CINCOMPAT) {
+                return r;
+            }
+            rs[i] = r;
+        }
+        return rs.sort().reverse()[0];
     }
 };
 
@@ -442,8 +481,10 @@ function searchEvent(event) {
  */
 function searchFor(text) {
     var predicate = makePredicates(text);
-    var tbody = document.getElementById("res");
+    var tbody = document.getElementById("compatRes");
+    var maybe = document.getElementById("maybeRes");
     flush(tbody);
+    flush(maybe);
     if (! text) {
         // Empty search - clear everything out.
         clearSearch();
@@ -452,10 +493,16 @@ function searchFor(text) {
     // Hide the table while we mutate the body to avoid browser lag.
     document.getElementById("search").style.display = "none";
     for (i in tubes) {
-        if (!predicate(tubes[i])) {
+        switch (predicate(tubes[i])) {
+        case CCOMPAT:
+            tbody.appendChild(rowFor(tubes[i]));
+            break;
+        case CMAYBE:
+            maybe.appendChild(rowFor(tubes[i]));
+            break;
+        default:
             continue;
         }
-        tbody.appendChild(rowFor(tubes[i]));
     }
     document.getElementById("search").style.display = "table";
 };
