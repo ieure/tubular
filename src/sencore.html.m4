@@ -4,10 +4,10 @@
         <meta name="version" content="1.4">
         <title>Monitor Helper</title>
         <style type="text/css">
-            include(reset.css)
+            include(css/reset.css)
         </style>
         <style type="text/css">
-            include(monitor.css)
+            include(css/tubular.css)
         </style>
         <script type="text/javascript">
             include(sencore_data.js.o)
@@ -74,7 +74,7 @@
     </div>
 
     <script type="text/javascript">
-        include(monitor.js.o)
+        include(tubular.js.o)
     </script>
 </body>
 </html>

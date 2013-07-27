@@ -1,3 +1,4 @@
 bk.html
 sencore.html
 *.o
+/target

@@ -4,10 +4,10 @@
         <meta name="version" content="1.4">
         <title>Tubular</title>
         <style type="text/css">
-            include(reset.css)
+            include(css/reset.css)
         </style>
         <style type="text/css">
-            include(tubular.css)
+            include(css/tubular.css)
         </style>
         <script type="text/javascript">
             include(__TYPE__`'_data.js.o)

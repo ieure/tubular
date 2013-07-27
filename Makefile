@@ -1,22 +1,23 @@
-JS     := $(wildcard *.js)
-#JS_OBJ := $(JS:%=%.o)
+SRCDIR = src
+OUTDIR = target
 JCC     = closure-compiler
 MAKES   = bk sencore
-SHARED  = reset.css tubular.css tubular.js.o Makefile
-TARGETS = bk.html sencore.html
+SHARED  = $(wildcard $(SRCDIR)/css/*.css) $(wildcard $(SRCDIR/data))
+TARGETS = $(MAKES:%=$(OUTDIR)/%.html) $(OUTDIR)/index.html
+M4     := m4 -I$(SRCDIR) -I$(OUTDIR)
 
 all: $(TARGETS)
 
-index.html: bk.html
-	ln -s $^ $@
+$(OUTDIR)/index.html: $(OUTDIR)/bk.html
+	ln -s $(notdir $^) $@
 
-bk.html: index.html.m4 bk_headers.html.m4 bk_data.js.o $(SHARED)
-	m4 -D__TYPE__=bk $< > $@
+$(OUTDIR)/bk.html: $(SRCDIR)/bk.html.m4 $(SHARED) $(OUTDIR)/tubular.js.o $(OUTDIR)/bk_data.js.o
+	$(M4) -D__TYPE__=bk $< > $@
 
-sencore.html: index.html.m4 sencore_headers.html.m4 sencore_data.js.o $(SHARED)
-	m4 -D__TYPE__=sencore $< > $@
+$(OUTDIR)/sencore.html: $(SRCDIR)/sencore.html.m4 $(SHARED) $(OUTDIR)/tubular.js.o $(OUTDIR)/sencore_data.js.o
+	$(M4) -D__TYPE__=sencore $< > $@
 
-%.js.o: %.js
+$(OUTDIR)/%.js.o: $(SRCDIR)/%.js
 	$(JCC) --js $^ --js_output_file $@
 
 dist: all
@@ -25,4 +26,4 @@ dist: all
 	    s3://tubular.atomized.org/sencore.html
 
 clean:
-	rm -f index.html $(JS_OBJ)
+	rm -f target/*
