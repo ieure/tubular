@@ -11,10 +11,10 @@ all: $(TARGETS)
 $(OUTDIR)/index.html: $(OUTDIR)/bk.html
 	ln -s $(notdir $^) $@
 
-$(OUTDIR)/bk.html: $(SRCDIR)/bk.html.m4 $(SHARED) $(OUTDIR)/tubular.js.o $(OUTDIR)/bk_data.js.o
+$(OUTDIR)/bk.html: $(SRCDIR)/index.html.m4 $(SHARED) $(OUTDIR)/tubular.js.o $(OUTDIR)/bk_data.js.o
 	$(M4) -D__TYPE__=bk $< > $@
 
-$(OUTDIR)/sencore.html: $(SRCDIR)/sencore.html.m4 $(SHARED) $(OUTDIR)/tubular.js.o $(OUTDIR)/sencore_data.js.o
+$(OUTDIR)/sencore.html: $(SRCDIR)/index.html.m4 $(SHARED) $(OUTDIR)/tubular.js.o $(OUTDIR)/sencore_data.js.o
 	$(M4) -D__TYPE__=sencore $< > $@
 
 $(OUTDIR)/%.js.o: $(SRCDIR)/%.js
