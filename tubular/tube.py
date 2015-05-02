@@ -32,6 +32,7 @@ class Helpers():
 
     @classmethod
     def test(cls, tube):
+        """Is this tube part of this system?"""
         return bool(cls._test(tube))
 
     @classmethod
@@ -41,6 +42,7 @@ class Helpers():
 
     @classmethod
     def _groups(cls, tube):
+        """Return parsed groups for this tube."""
         m = cls._test(tube)
         if not m:
             raise TypeError("`%s' is not a %s" % (tube, cls))
@@ -48,12 +50,16 @@ class Helpers():
 
     @classmethod
     def find(cls, tube):
+        """Return a tube model in a string."""
         m = cls.parse_regex.search(tube)
         if m:
             return m.group(0)
 
     @classmethod
     def simplify(cls, tube):
+        """Return simplified tube model.
+
+           Removes extra data on the end etc."""
         return SIMPLIFY_RE.sub('\\1', tube)
 
 
