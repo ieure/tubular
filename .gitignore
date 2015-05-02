@@ -1,3 +1,5 @@
-bk.html
-sencore.html
-*.o
+/bin
+/lib
+/include
+/target
+/.Python

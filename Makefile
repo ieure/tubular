@@ -1,28 +1,49 @@
-JS     := $(wildcard *.js)
-#JS_OBJ := $(JS:%=%.o)
-JCC     = closure-compiler
-MAKES   = bk sencore
-SHARED  = reset.css tubular.css tubular.js.o Makefile
-TARGETS = bk.html sencore.html
+TARGET := target
+DATA := tubular/data
+TEMPLATES := $(DATA)/templates
+PYV := 2.7
+PY := bin/python
+CSS := $(wildcard $(TEMPLATES)/*.css)
+CSS_TARGETS := $(CSS:$(TEMPLATES)/%=$(TARGET)/%)
 
-all: $(TARGETS)
+all: $(PY) css adapters tubes monitors monitorid
 
-index.html: bk.html
-	ln -s $^ $@
+$(PY):
+	virtualenv-$(PYV) --no-site-packages .
 
-bk.html: index.html.m4 bk_headers.html.m4 bk_data.js.o $(SHARED)
-	m4 -D__TYPE__=bk $< > $@
+tubes: $(TARGET)/tube $(DATA)/bk_data.json $(DATA)/sencore_data.json $(DATA)/monitor_data.json $(TEMPLATES)/tube_page.html tubular/make_tubes.py
+	./bin/mktubes --target=$(TARGET)/tube
 
-sencore.html: index.html.m4 sencore_headers.html.m4 sencore_data.js.o $(SHARED)
-	m4 -D__TYPE__=sencore $< > $@
+target/tube/%.html: $(TARGET)/tube $(DATA)/bk_data.json $(DATA)/sencore_data.json $(DATA)/monitor_data.json $(TEMPLATES)/tube_page.html tubular/make_tubes.py css
+	./bin/mktubes --target=$(TARGET)/tube $*
 
-%.js.o: %.js
-	$(JCC) --js $^ --js_output_file $@
+monitors: $(TARGET)/monitor $(DATA)/monitor_data.json $(TEMPLATES)/monitor.html $(TEMPLATES)/monitor_page.html
+	./bin/mkmonitors --target=$(TARGET)/monitor
 
-dist: all
-	s3cmd put $(TARGETS) s3://tubular.atomized.org
-	s3cmd setacl --acl-public s3://tubular.atomized.org/bk.html \
-	    s3://tubular.atomized.org/sencore.html
+monitorid: $(TARGET)/monitor/identify.html
+
+$(TARGET)/monitor/identify.html: $(TARGET)/monitor $(DATA)/monitor_data.json $(TEMPLATES)/monitor_id_page.html $(TEMPLATES)/monitor.html tubular/make_monitorid.py
+	./bin/mkmonitorid --target=$(TARGET)
+
+$(TARGET):
+	mkdir -p $@
+
+$(TARGET)/tube:
+	mkdir -p $@
+
+$(TARGET)/monitor: $(TARGET)
+	mkdir -p $@
+
+css: $(CSS_TARGETS)
+$(CSS_TARGETS): $(TARGET)/%: $(TEMPLATES)/% $(TARGET)
+	cp $< $@
+
+test:
+	@echo $(ADAPTER_TARGETS)
+
+adapters: $(TARGET)/adapters
+$(TARGET)/adapters: $(DATA)/adapters
+	cp -R $< $@
 
 clean:
-	rm -f index.html $(JS_OBJ)
+	rm -rf $(TARGET)

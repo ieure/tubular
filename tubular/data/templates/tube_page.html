@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <title>Tubular - {{ tube }}</title>
+        <link rel="stylesheet" type="text/css" href="../reset.css">
+        <link rel="stylesheet" type="text/css" href="../tubular.css">
+    </head>
+    <body class="tube">
+        <h1><span class="type color"><span></span></span>
+            <span>{{ tube }} {{ #color }}{{ color }} {{ /color }} Picture Tube <a href="../index.html#s/xref:{{ tube }}" class="xref" title="Cross-reference tube {{ tube }}">🔀</a></span></h1>
+
+        
+
+        {{ #bk }}
+        <table id="bk" class="setup">
+            <thead>
+                <tr>
+                    <th colspan="2">B+K Setup</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Heater</th>
+                    <td>{{ bk.heater }}v</td>
+                </tr>
+                <tr>
+                    <th>Adapter</th>
+                    <td>{{ #bk.datasheet }}<a href="{{ bk.datasheet }}" alt="Datasheet for BK Precision CR-{{ bk.adapter }} adapter" title="Datasheet"> {{ /bk.datasheet }}CR-{{ bk.adapter }} / CA-{{ bk.adapter }}{{ #bk.datasheet }}</a>{{ /bk.datasheet }}</td>
+                </tr>
+                <tr>
+                    <th>G1</th>
+                    <td>{{ bk.g1 }}V</td>
+                </tr>
+                {{ #bk.notes }}
+                <tr>
+                    <th>Notes</th>
+                    <td>{{ bk.notes }}</td>
+                </tr>
+                {{ /bk.notes }}
+            </tbody>
+        </table>
+        {{ /bk }}
+
+        {{ #sencore }}
+        <table id="sencore" class="setup">
+            <thead>
+                <tr>
+                    <th colspan="2">Sencore Setup</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Model</th>
+                    <td>{{ sencore.model }}</td>
+                </tr>
+                <tr>
+                    <th>Heater</th>
+                    <td>{{ sencore.heater }}</td>
+                </tr>
+                <tr>
+                    <th>Bias</th>
+                    <td>{{ sencore.bias }}</td>
+                </tr>
+                <tr>
+                    <th>Socket</th>
+                    <td>{{ sencore.socket }}</td>
+                </tr>
+            </tbody>
+        </table>
+        {{ /sencore }}
+    </body>
+</html>

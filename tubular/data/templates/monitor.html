@@ -1,0 +1,49 @@
+<div class="monitor {{ monitor.class }}">
+    <h1>{{ monitor.manufacturer }} {{ monitor.model }} {{ monitor.color }} {{ monitor.type }} Monitor</h1>
+    <div class="photos">
+        {{ #monitor.photos }}
+        <img src="{{uri}}">
+        {{ /monitor.photos }}
+    </div>
+    <div class="data">
+        <table>
+            <tr>
+                <th>Size</th>
+                <td>{{ monitor.size }}"</td>
+            </tr>
+            <tr>
+                <th>Tube</th>
+                <td><a href="../tube/{{monitor.simple_tube}}.html">{{ monitor.tube }}</a> <a href="../index.html#s/xref:{{monitor.simple_tube}}" class="xref" title="Cross-reference tube {{ monitor.simple_tube }}">🔀</a></td>
+            </tr>
+            <tr>
+                <th>Sync</th>
+                <td>{{ #monitor.sync }} {{sync}}khz {{ /monitor.sync}}</td>
+            </tr>
+            {{ #monitor.yoke.id }}
+            <tr>
+                <th>Yoke p/n</th>
+                <td>{{monitor.yoke.id}}</td>
+            </tr>
+            {{ /monitor.yoke.id }}
+            {{ #monitor.yoke.h }}
+            <tr>
+                <th>Yoke H.</th>
+                <td>{{monitor.yoke.h}}Ω</td>
+            </tr>
+            {{ /monitor.yoke.h }}
+            {{ #monitor.yoke.v }}
+            <tr>
+                <th>Yoke V.</th>
+                <td>{{monitor.yoke.v}}Ω</td>
+            </tr>
+            {{ /monitor.yoke.v }}
+        </table>
+        <hr>
+        <ul class="docs">
+            {{ #monitor.docs }}
+            <li><a href="{{uri}}">{{title}}</a></li>
+            {{ /monitor.docs }}
+        </ul>
+        {{ #monitor.notes }}<p>{{ monitor.notes}}</p> {{ /monitor.notes }}
+    </div>
+</div>

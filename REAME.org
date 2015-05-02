@@ -1,0 +1,36 @@
+* Tubular
+
+  Tubular is a collection of tools for repairing CRT display devices,
+  particularly arcade video game monitors. It includes a simple
+  searchable database of CRT information. It’s useful if you’re
+  rejuvenating a CRT or [[http://www.junknet.net/donor-tvs][looking for a donor tube to swap into an
+  arcade monitor.]]
+
+* Features
+  - Includes tube model, heater & G1 voltages, neck socket type,
+    color/mono, swapped guns.
+  - Data on nearly 9,000 tubes.
+  - One HTML page with no external dependencies — use it even if
+    you’re offline.
+  - Well-behaved, sets browser history as you’d expect.
+  - Mobile optimized.
+
+* Using it
+  [[http://tubular.atomized.org][It’s online right here]]! Start entering the tube model you’re
+  interested in, and it should show up in the list.
+
+* Tube compatibility
+
+  To determine if two tubes are compatible
+
+  1. Enter the source tube mobel into the Tube field, and tap on it in
+     the results. The screen results will clear, and a “Compatible
+     with” caption appears under the search dialog. Search results
+     will now be restricted to tubes compatible with the source.
+  2. Enter the potential donor tube model into the Tube
+     field. Compatible tubes will appear normally at the top of the
+     results, while matching but incompatble tubes will appear grayed
+     out at the bottom of the results list.
+
+* Thanks
+  KLOVers modessitt (for the idea) and channelmanic (for the data).

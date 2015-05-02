@@ -1,0 +1,424 @@
+{
+    "Wells-Gardner": {
+        "13K7203": {
+            "color": true,
+            "type": "raster",
+            "tube": "A34KQW42X",
+            "yoke": {
+                "h": 3.6,
+                "v": 12.8
+            },
+            "size": 13,
+            "sync": [15],
+            "docs": {
+                "Spec Sheet": "http://www.wellsgardner.com/pdf/Spec/K7200_19.pdf",
+                "Schematics": "http://www.wellsgardner.com/pdf/Schematics/K7203_13_19_inch.pdf",
+                "Block Diagram": "http://www.wellsgardner.com/pdf/Block/K7203_13_19_inch.pdf",
+                "Voltage References": "http://www.wellsgardner.com/pdf/Voltage/K7203_13_19.pdf",
+                "Troubleshooting & Repair Guide": "http://www.wellsgardner.com/pdf/Repair/K7203_13_19_inch.pdf",
+                "Board Layout": "http://www.wellsgardner.com/pdf/Board/K7203_13_19_inch.pdf"
+            },
+            "photos": ["http://therealbobroberts.net/mon79.jpg",
+                       "http://therealbobroberts.net/mon3a.jpg"]
+        },
+        "13K7000": {
+            "color": true,
+            "type": "raster",
+            "tube": "A34JLL40X25",
+            "yoke": {
+                "h": 3.6,
+                "v": 14.6
+            },
+            "size": 13,
+            "sync": [15],
+            "docs": {
+                "Spec Sheet": "http://www.wellsgardner.com/pdf/Spec/K7000.pdf",
+                "Service Manual": "http://www.wellsgardner.com/pdf/Service/K7000.pdf",
+                "Schematics": "http://www.wellsgardner.com/pdf/Schematics/K7000_13_19_inch.pdf",
+                "Block Diagram": "http://www.wellsgardner.com/pdf/Block/K7000_13_19_25_inch.pdf",
+                "Voltage Referenecs": "http://www.wellsgardner.com/pdf/voltage/K7000.pdf",
+                "Troubleshooting & Repair Guide": "http://www.wellsgardner.com/pdf/Repair/K7000.pdf",
+                "Board Layout": "http://www.wellsgardner.com/pdf/Board/K7000_13_19_25_and_27_inch.pdf"
+            },
+            "photos": ["http://therealbobroberts.net/mon3a.jpg"],
+            "notes": "Model number may be K70xx, K71xx, K76xx, K78xx, K79xx. All the same basic chassis. 13\" K7000s typically have a short (~1\") S-shaped heat sink on IC3, and may have a large, small, or no remote board. P447 is usualy screened on the PCB."
+        },
+        "13K7886": {
+            "color": true,
+            "type": "raster",
+            "tube": "M34JRW23X09",
+            "yoke": {
+                "id": "ODY-D1 409",
+                "h": 2.2,
+                "v": 10.9
+            },
+            "size": 13,
+            "sync": [15],
+            "docs": {
+                "Spec Sheet": "http://www.wellsgardner.com/pdf/Spec/K7000.pdf",
+                "Service Manual": "http://www.wellsgardner.com/pdf/Service/K7000.pdf",
+                "Schematics": "http://www.wellsgardner.com/pdf/Schematics/K7000_13_19_inch.pdf",
+                "Block Diagram": "http://www.wellsgardner.com/pdf/Block/K7000_13_19_25_inch.pdf",
+                "Voltage Referenecs": "http://www.wellsgardner.com/pdf/voltage/K7000.pdf",
+                "Troubleshooting & Repair Guide": "http://www.wellsgardner.com/pdf/Repair/K7000.pdf",
+                "Board Layout": "http://www.wellsgardner.com/pdf/Board/K7000_13_19_25_and_27_inch.pdf"
+            },
+            "photos": ["http://therealbobroberts.net/mon3a.jpg"],
+            "notes": "13\" K7000, found in poker / lotto / gambling machines. Has P673 riser card. Uses an uncommon tube & yoke resistance."
+        },
+        "19K7000": {
+            "color": true,
+            "type": "raster",
+            "tube": "A48ABK05X",
+            "yoke": {
+                "h": 2.9,
+                "v": 13.4
+            },
+            "size": 19,
+            "sync": [15],
+            "docs": {
+                "Spec Sheet": "http://www.wellsgardner.com/pdf/Spec/K7000.pdf",
+                "Service Manual": "http://www.wellsgardner.com/pdf/Service/K7000.pdf",
+                "Schematics": "http://www.wellsgardner.com/pdf/Schematics/K7000_13_19_inch.pdf",
+                "Block Diagram": "http://www.wellsgardner.com/pdf/Block/K7000_13_19_25_inch.pdf",
+                "Voltage References": "http://www.wellsgardner.com/pdf/voltage/K7000.pdf",
+                "Troubleshooting & Repair Guide": "http://www.wellsgardner.com/pdf/Repair/K7000.pdf",
+                "Board Layout": "http://www.wellsgardner.com/pdf/Board/K7000_13_19_25_and_27_inch.pdf"
+            },
+            "photos": ["http://therealbobroberts.net/mon3a.jpg"],
+            "notes": "Model number may be K70xx, K71xx, K76xx, K78xx, K79xx. All the same basic chassis. 19\" K7000s typically have no remote adjust PCB. May have a shield on the front left, in front of the flyback."
+        },
+        "25K7000": {
+            "color": true,
+            "type": "raster",
+            "size": 25,
+            "tube": "A63ADG25X",
+            "sync": [15],
+            "docs": {
+                "Spec Sheet": "http://www.wellsgardner.com/pdf/Spec/K7000.pdf",
+                "Service Manual": "http://www.wellsgardner.com/pdf/Service/K7000.pdf",
+                "Schematics": "http://www.wellsgardner.com/pdf/Schematics/K7000_13_19_inch.pdf",
+                "Block Diagram": "http://www.wellsgardner.com/pdf/Block/K7000_13_19_25_inch.pdf",
+                "Voltage Referenecs": "http://www.wellsgardner.com/pdf/voltage/K7000.pdf",
+                "Troubleshooting & Repair Guide": "http://www.wellsgardner.com/pdf/Repair/K7000.pdf",
+                "Board Layout": "http://www.wellsgardner.com/pdf/Board/K7000_13_19_25_and_27_inch.pdf"
+            },
+            "photos": ["http://therealbobroberts.net/mon3a.jpg"],
+            "notes": "Model number may be K70xx, K71xx, K76xx, K78xx, K79xx. All the same basic chassis. Typically has P538 silkscreened on the PCB. Tall flat heatsink on IC3."
+        },
+        "25K7401": {
+            "color": true,
+            "type": "raster",
+            "tube": "A63AFW36X",
+            "yoke": {
+                "h": 1.1,
+                "v": 7.1
+            },
+            "size": 25,
+            "sync": [15],
+            "docs": {
+                "Spec Sheet": "http://www.wellsgardner.com/pdf/Spec/K7400_25.pdf",
+                "Schematics": "http://www.wellsgardner.com/pdf/Schematics/K7400_25_inch.pdf",
+                "Block Diagram": "http://www.wellsgardner.com/pdf/Block/K7400_K7500.pdf",
+                "Voltage References": "http://www.wellsgardner.com/pdf/voltage/K7400_K7500.pdf",
+                "Troubleshooting & Repair Guide": "http://www.wellsgardner.com/pdf/Repair/K7400_25_inch.pdf",
+                "Board Layout": "http://www.wellsgardner.com/pdf/Board/K7400_25_27_inch.pdf"
+            },
+            "photos": ["http://therealbobroberts.net/mon70.jpg"]
+        },
+        "19K4500": {
+            "color": true,
+            "type": "raster",
+            "tube": "19VEGP22",
+            "size": 19,
+            "sync": [15],
+            "docs": {
+                "Schematics": "http://arcarc.xmission.com/PDF_Monitors/Wells%20Gardner%20WG-K4500%20Schematic.pdf"
+            },
+            "photos": ["http://therealbobroberts.net/mon47.jpg"]
+        },
+        "19K4600": {
+            "color": true,
+            "type": "raster",
+            "tube": "19VJTP22",
+            "yoke": {
+                "h": 2.7,
+                "v": 8.3
+            },
+            "size": 19,
+            "sync": [15],
+            "docs": {
+                "Service Manual": "http://arcarc.xmission.com/PDF_Monitors/WG%20K4600_Manual.pdf"
+            },
+            "photos": ["http://therealbobroberts.net/mon1.jpg"]
+        },
+        "13K4700": {
+            "color": true,
+            "type": "raster",
+            "tube": "370DJB22",
+            "size": 13,
+            "sync": [15]
+        },
+        "13K4800": {
+            "color": true,
+            "type": "raster",
+            "tube": "370KSB22",
+            "yoke": {
+                "h": 5.9,
+                "v": 77.8
+            },
+            "size": 13,
+            "sync": [15],
+            "docs": {
+                "Service Manual": "http://arcarc.xmission.com/PDF_Monitors/WG%20K4900_Manual_A.pdf",
+                "Waveforms": "http://arcarc.xmission.com/PDF_Monitors/WG%20K4900_Waveforms.PDF"
+            },
+            "notes": "13\" version of the K4900"
+        },
+        "19K4900": {
+            "color": true,
+            "type": "raster",
+            "tube": "19VLTP22",
+            "yoke": {
+                "h": 2.6,
+                "v": 34.6
+            },
+            "size": 19,
+            "sync": [15],
+            "docs": {
+                "Service Manual": "http://arcarc.xmission.com/PDF_Monitors/WG%20K4900_Manual_A.pdf",
+                "Waveforms": "http://arcarc.xmission.com/PDF_Monitors/WG%20K4900_Waveforms.PDF"
+            },
+            "photos": ["http://therealbobroberts.net/mon2.jpg"]
+        },
+        "19K6100": {
+            "color": true,
+            "type": "vector",
+            "tube": "19VLUP22",
+            "size": 19,
+            "docs": {
+                "Manual (1st printing)": "http://arcarc.xmission.com/PDF_Monitors/Atari%20Monitor%20TM-183%201st%20Printing%20WG%206100%20XY%20Quadrascan.pdf",
+                "Manual (2nd printing)": "http://arcarc.xmission.com/PDF_Monitors/Atari%20Monitor%20TM-183%202nd%20Printing%20WG%206100%20XY%20Quadrascan.pdf",
+                "Manual (3rd printing)": "http://arcarc.xmission.com/PDF_Monitors/Atari%20Monitor%20TM-183%203rd%20Printing%20WG%206100%20XY%20Quadrascan%20.pdf",
+                "FAQ": "http://arcarc.xmission.com/PDF_Monitors/FAQ%20Wells%20Gardner%206100%20Version%201.0%20dated%201%20Mar%2002.pdf"
+            },
+            "photos": ["http://therealbobroberts.net/mon40.jpg"]
+        },
+        "15V2000": {
+            "color": false,
+            "type": "vector",
+            "tube": "15ST4730R",
+            "size": 15,
+            "docs": {
+                "Service Manual": "http://arcarc.xmission.com/PDF_Monitors/Wells%20Gardner%2019V2000%20XY%20B&W.pdf"
+            },
+            "photos": ["http://therealbobroberts.net/mon13.jpg"]
+        },
+        "19V2000": {
+            "color": false,
+            "type": "vector",
+            "tube": "19VARP4",
+            "size": 19,
+            "docs": {
+                "Service Manual": "http://arcarc.xmission.com/PDF_Monitors/Wells%20Gardner%2019V2000%20XY%20B&W.pdf"
+            },
+            "photos": ["http://therealbobroberts.net/mon37.jpg"]
+        }
+    },
+
+    "Electrohome": {
+        "13G07-FBO": {
+            "color": true,
+            "type": "raster",
+            "tube": "370ESB22",
+            "size": 13,
+            "sync": [15],
+            "docs": {
+                "Service Manual": "http://arcarc.xmission.com/PDF_Monitors/Electrohome%20G07%2013in%20and%2019in%20Color%20Raster.pdf"
+            },
+            "photos": ["http://therealbobroberts.net/mon17.jpg"],
+            "notes": "Does not have B+ adjust circuitry/pot like the 19\" chassis."
+        },
+        "19G07-CBO": {
+            "color": true,
+            "type": "raster",
+            "tube": "19VJTP22",
+            "yoke": {
+                "h": 2.6,
+                "v": 54.5
+            },
+            "size": 19,
+            "sync": [15],
+            "docs": {
+                "Service Manual": "http://arcarc.xmission.com/PDF_Monitors/Electrohome%20G07%2013in%20and%2019in%20Color%20Raster.pdf"
+            },
+            "photos": ["http://therealbobroberts.net/mon17.jpg"]
+        },
+        "19G05-801": {
+            "color": false,
+            "type": "vector",
+            "tube": "19VARP4",
+            "size": 19,
+            "docs": {
+                "Service Manual (Issue 1)": "http://arcarc.xmission.com/PDF_Monitors/Atari%20Monitor%20TM-146%20Issue%201%20Electrohome%20G05-801%20Monochrome%20XY.pdf",
+                "Service Manual (Issue 2)": "http://arcarc.xmission.com/PDF_Monitors/Atari%20Monitor%20TM-146%20Issue%202%20Electrohome%20G05%20Monochrome%20XY.pdf"
+            },
+            "photos": ["http://therealbobroberts.net/mon35.jpg"]
+        },
+        "19G05-802": {
+            "color": false,
+            "type": "vector",
+            "tube": "19VARP4",
+            "size": 19,
+            "docs": {
+                "Service Manual (Temporary)": "http://arcarc.xmission.com/PDF_Monitors/Atari%20Monitor%20TM-151%20Temporary%20G05-802%20Monochrome%20X-Y.pdf",
+                "Service Manual (Issue 2)": "http://arcarc.xmission.com/PDF_Monitors/Atari%20Monitor%20TM-151%20Issue%202%20Electrohome%20G05-802%20G05-805%20Monochrome%20XY.pdf",
+                "Service Manual (Issue 3)": "http://arcarc.xmission.com/PDF_Monitors/Atari%20Monitor%20TM-151%20Issue%203%20Electrohome%20G05-802%20G05-805%20Monochrome%20XY.pdf"
+            },
+            "photos": ["http://therealbobroberts.net/mon12.jpg"]
+        },
+        "15G05-805": {
+            "color": false,
+            "type": "vector",
+            "tube": "15ST4730R",
+            "size": 15,
+            "docs": {
+                "Service Manual (Issue 2)": "http://arcarc.xmission.com/PDF_Monitors/Atari%20Monitor%20TM-151%20Issue%202%20Electrohome%20G05-802%20G05-805%20Monochrome%20XY.pdf",
+                "Service Manual (Issue 3)": "http://arcarc.xmission.com/PDF_Monitors/Atari%20Monitor%20TM-151%20Issue%203%20Electrohome%20G05-802%20G05-805%20Monochrome%20XY.pdf"
+            },
+            "photos": ["http://therealbobroberts.net/mon12.jpg"],
+            "notes": "Same as 19\" deflection PCB, except R604, R704 are different values."
+        },
+        "19G08-003": {
+            "color": true,
+            "type": "vector",
+            "tube": "19VLUP22",
+            "size": 19,
+            "docs": {
+                "Service Manual": "http://tamdb.net/v2/index.php?action=downloads;sa=view;down=901"
+            }
+        }
+    },
+
+    "Duck-San": {
+        "Type 20": {
+            "color": true,
+            "type": "raster",
+            "tube": "A34JLL90X41",
+            "yoke": {
+                "h": 3.6,
+                "v": 11.2
+            },
+            "size": 13,
+            "sync": [15]
+        }
+    },
+
+    "Matsushita": {
+        "14\"": {
+            "color": true,
+            "type": "raster",
+            "tube": "370GHB22",
+            "yoke": {
+                "id": "TLY-15302A",
+                "h": 2.2,
+                "v": 12.8
+            },
+            "size": 13,
+            "sync": [15],
+            "docs": {
+                "Service Manual (2nd Printing)": "http://arcarc.xmission.com/PDF_Monitors/Atari%20Monitor%20TM-153%202nd%20Printing%20Matsushita%2014in%20Color%20Raster%20.pdf"
+            },
+            "photos": ["http://therealbobroberts.net/mon44.jpg"],
+            "notes": "Commonly in Missile Command cocktail and cabaret games, Exidy Targ / Spectar minis."
+        }
+    },
+
+    "Sanyo": {
+        "20EZ": {
+            "color": true,
+            "type": "raster",
+            "tube": "510UTB22",
+            "size": 20,
+            "sync": [15],
+            "docs": {
+                "Model B-C Schematic": "http://arcarc.xmission.com/PDF_Monitors/Sanyo%20EZV%2020%20(R-C)%20Monitor.pdf",
+                "Model 31 R-B Schematic": "http://arcarc.xmission.com/PDF_Monitors/Sanyo_%2020-EZV_(R-B)_Model_31_(1981-3-25).pdf"
+            },
+            "photos": ["http://therealbobroberts.net/mon6.jpg"],
+            "notes": "Nintendo monitors. Requires inverted input."
+        }
+    },
+
+    "Eygo": {
+        "UCS-13CS-28SR": {
+            "color": true,
+            "type": "raster",
+            "tube": "13VATP22",
+            "size": 13,
+            "sync": [15],
+            "docs": {
+                "Schematic": "http://arcarc.xmission.com/PDF_Monitors/Eygo_13in_UCS-13CS-28SR.pdf"
+            },
+            "photos": ["http://therealbobroberts.net/mon16.jpg"],
+            "notes": "Commonly in Moppet Video games"
+        }
+    },
+
+    "Unknown / Mini Cute": {
+        "Unknown / Mini Cute": {
+            "color": true,
+            "type": "raster",
+            "tube": "470MSB22",
+            "size": 18,
+            "sync": [15],
+            "yoke": {
+                "h": 1.8,
+                "v": 58.6
+            }
+        }
+    },
+
+    "Amplifone": {
+        "13\"": {
+            "color": true,
+            "type": "vector",
+            "tube": "13VBSP22",
+            "size": 13,
+            "yoke": {
+                "id": "A201075-01 100310T",
+                "h": 0.8,
+                "v": 0.6
+            },
+            "docs": {
+                "Service Manual": "http://arcarc.xmission.com/PDF_Monitors/Atari%20Monitor%20TM-222%201st%20Printing%20Amplifone%2013in%20Color%20XY.pdf"
+            },
+            "notes": "Unique PCB, includes integrated deflection & HV on a single board. Has a neck PCB."
+        },
+        "19\"": {
+            "color": true,
+            "type": "vector",
+            "tube": "19VJTP22",
+            "size": 19,
+            "yoke": {
+            },
+            "docs": {
+                "Service Manual": "http://arcarc.xmission.com/PDF_Monitors/Atari%20Monitor%20TM-239%201st%20Printing%20Amplifone%2019in%20and%2025in%20Color%20XY.pdf"
+            },
+            "notes": "19\" & 25\" have identical deflection & HV PCBs, and no neck board."
+        },
+
+        "25\"": {
+            "color": true,
+            "type": "vector",
+            "tube": "A63AAX00X",
+            "size": 25,
+            "yoke": {
+            },
+            "docs": {
+                "Service Manual": "http://arcarc.xmission.com/PDF_Monitors/Atari%20Monitor%20TM-239%201st%20Printing%20Amplifone%2019in%20and%2025in%20Color%20XY.pdf"
+            },
+            "notes": "19\" & 25\" have identical deflection & HV PCBs, and no neck board."
+        }
+    }
+}
