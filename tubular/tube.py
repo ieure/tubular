@@ -122,6 +122,7 @@ class EiajTube(Helpers):
 
         return out
 
+
 class EuroTube(Helpers):
     parse_regex = re.compile(r'^([ADEFLMPQ])([0-9]{2})(-[0-9]+)([A-Z])', re.I)
     name = "Pro Electron (Europe)"
@@ -169,6 +170,14 @@ class Tube(Helpers):
         for system in cls.systems:
             if system.test(tube):
                 return system.parse(tube)
+
+    @classmethod
+    def system(cls, tube):
+        """Return the system used for a tube."""
+        for system in cls.systems:
+            f = system.find(tube)
+            if f:
+                return system.name
 
     @classmethod
     def find(cls, tube):

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# © 2014 Ian Eure
+# © 2014, 2015 Ian Eure
 # Author: Ian Eure <ian.eure@gmail.com>
 #
 
@@ -89,6 +89,11 @@ class TestTube(unittest.TestCase):
     def test_find(self):
         self.assertEqual("180DRB22", Tube.find("180DRB22 (R)"))
         self.assertEqual("M17-12", Tube.find("M17-12"))
+
+    def test_system(self):
+        self.assertEqual('WTDS (World)', Tube.system('A48AAB00X'))
+        self.assertEqual('EIAJ (Japan)', Tube.system('3708B22'))
+
 
 
 class TestHelpers(unittest.TestCase):

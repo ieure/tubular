@@ -26,6 +26,7 @@ def get_parser():
 
 
 def hash(tubes):
+    """Return a hash of tube data, keyed by tube model."""
     acc = {}
     for tube in tubes:
         acc[tube[0]] = tube[1:]
@@ -39,6 +40,7 @@ def hash_adjunct(adjunct):
 
 
 def parse_for_template(tube):
+    """Return tube explanation reformatted for mustache."""
     parsed = Tube.parse(tube)
     if not parsed:
         return None
@@ -108,12 +110,12 @@ def main():
     build_tubes = all_tubes & cli_tubes or all_tubes
     for tube in build_tubes:
         raw = Tube.find(tube) or tube
+        system = Tube.system(raw)
         outf = FILE_BLACKLIST.sub('-', tube.strip())
-        # if tube != outf:
-        #     print "%s -> %s (%s)" % (tube, outf, raw)
         bk_data = bk.get(tube, [])
         context = {
             'tube': tube,
+            'system': system,
             'parsed': parse_for_template(raw),
             'bk': expand_bk(raw, bk_data, bk_adjunct),
             'sencore': expand_sencore(sencore.get(tube, []))}
