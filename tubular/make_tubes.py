@@ -99,10 +99,6 @@ def main():
     with load('templates/tube_page.html') as fd:
         template = pystache.parse(unicode(fd.read(), 'utf-8'))
 
-
-
-
-
     target = args.target
     if target[-1] != '/':
         target += '/'
@@ -127,7 +123,6 @@ def main():
             pass
         if tube in bk_adjunct['red_blue_swap']:
             pass
-
 
         with open('%s%s.html' % (target, outf), 'w') as fd:
             fd.write(RENDERER.render(template, context).encode('utf-8'))

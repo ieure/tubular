@@ -8,15 +8,20 @@
         <h1><span class="type color"><span></span></span>
             <span>{{ tube }} {{ #color }}{{ color }} {{ /color }} Picture Tube <a href="../index.html#s/xref:{{ tube }}" class="xref" title="Cross-reference tube {{ tube }}">🔀</a></span></h1>
 
-        
+        <table id="explain">
+            <thead>
+                <tr><th colspan="2">Tube characteristics</th></tr>
+            </thead>
+            <tbody>
+                {{ #parsed }}
+                <tr><th>{{ part }}</th><td>{{ expl }}</td></tr>
+                {{ /parsed }}
+            </tbody>
+        </table>
 
         {{ #bk }}
         <table id="bk" class="setup">
-            <thead>
-                <tr>
-                    <th colspan="2">B+K Setup</th>
-                </tr>
-            </thead>
+            <thead><tr><th colspan="2">B+K Setup</th></tr></thead>
             <tbody>
                 <tr>
                     <th>Heater</th>
@@ -42,11 +47,7 @@
 
         {{ #sencore }}
         <table id="sencore" class="setup">
-            <thead>
-                <tr>
-                    <th colspan="2">Sencore Setup</th>
-                </tr>
-            </thead>
+            <thead><tr><th colspan="2">Sencore Setup</th></tr></thead>
             <tbody>
                 <tr>
                     <th>Model</th>
